@@ -18,5 +18,6 @@ composer require --dev "codeception/codeception:~2.1"
 ```
 
 ```
-cp vendor/bin/codecept bin/codecept
+php vendor/bin/codecept bootstrap --empty
+php vendor/bin/codecept g:suite acceptance
 ```
