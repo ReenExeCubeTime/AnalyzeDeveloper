@@ -13,3 +13,6 @@ composer require doctrine/doctrine-migrations-bundle "^1.0"
 ```
 
 [Using Codeception for Symfony Projects](http://codeception.com/09-04-2015/using-codeception-for-symfony-projects.html)
+```bash
+composer require --dev "codeception/codeception:~2.1"
+```
