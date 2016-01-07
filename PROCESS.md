@@ -11,3 +11,5 @@ CREATE DATABASE IF NOT EXISTS `reen` CHARACTER SET `utf8` COLLATE `utf8_bin`;
 ```bash
 composer require doctrine/doctrine-migrations-bundle "^1.0"
 ```
+
+[Using Codeception for Symfony Projects](http://codeception.com/09-04-2015/using-codeception-for-symfony-projects.html)
