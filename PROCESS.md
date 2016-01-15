@@ -16,3 +16,8 @@ composer require doctrine/doctrine-migrations-bundle "^1.0"
 ```bash
 composer require --dev "codeception/codeception:~2.1"
 ```
+
+```
+php vendor/bin/codecept bootstrap
+php vendor/bin/codecept run
+```

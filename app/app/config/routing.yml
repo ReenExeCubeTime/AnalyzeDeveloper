@@ -1,3 +1,14 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+_main:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix: /
+
+# TODO
+#nelmio_api_doc_index:
+#    pattern: /api/doc
+#    defaults: { _controller: NelmioApiDocBundle:ApiDoc:index }
+#    requirements:
+#        _method: GET
