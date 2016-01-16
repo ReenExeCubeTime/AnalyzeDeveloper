@@ -19,7 +19,7 @@ class Version20160116184804 extends AbstractMigration
             '
                 CREATE TABLE `s_skill`(
                     `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
-                    `name` VARCHAR(50) NOT NULL
+                    `name` VARCHAR(255) NOT NULL
                 );
             '
         ]);

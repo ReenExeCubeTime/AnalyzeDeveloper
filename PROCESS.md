@@ -26,3 +26,8 @@ php vendor/bin/codecept run
 ```bash
 composer require --dev behat/behat
 ```
+
+[Doctrine]
+```bash
+bin/console doctrine:generate:entities AppBundle
+```
