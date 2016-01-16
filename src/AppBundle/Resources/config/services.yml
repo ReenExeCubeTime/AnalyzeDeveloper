@@ -1,3 +1,5 @@
 services:
     rqs.skill:
         class: AppBundle\Services\SkillService
+        arguments:
+            - '@doctrine'
