@@ -21,3 +21,8 @@ composer require --dev "codeception/codeception:~2.1"
 php vendor/bin/codecept bootstrap
 php vendor/bin/codecept run
 ```
+
+[Behat] (https://github.com/Behat/Behat)
+```bash
+composer require --dev behat/behat
+```
