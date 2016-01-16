@@ -4,7 +4,7 @@ namespace Tests\AppBundle\Service;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class UserServiceTest extends KernelTestCase
+class SkillServiceTest extends KernelTestCase
 {
     private $container;
 
