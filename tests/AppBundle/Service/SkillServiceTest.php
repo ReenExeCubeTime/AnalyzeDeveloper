@@ -2,21 +2,25 @@
 
 namespace Tests\AppBundle\Service;
 
+use AppBundle\Services\SkillService;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class SkillServiceTest extends KernelTestCase
 {
-    private $container;
+    /**
+     * @var SkillService
+     */
+    private $service;
 
-    public function testIndex()
+    public function setUp()
     {
         static::bootKernel();
 
-        $this->container = static::$kernel->getContainer();
+        $this->service = static::$kernel->getContainer()->get('rqs.skill');
     }
 
     public function test()
     {
-
+        $this->service->add('PHP');
     }
 }
