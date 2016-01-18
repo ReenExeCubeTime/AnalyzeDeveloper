@@ -15,7 +15,7 @@ class DeveloperProfileService
         $this->doctrine = $doctrine;
     }
 
-    public function create(SUser $user, $title, $salary, $description)
+    public function create(SUser $user, $title, $salary, $description, array $skills = [])
     {
         $profile = new SDeveloperProfile();
 
