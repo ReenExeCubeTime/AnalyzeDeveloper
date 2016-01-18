@@ -23,4 +23,9 @@ class SkillService
         $this->doctrine->getManager()->persist($skill);
         $this->doctrine->getManager()->flush();
     }
+
+    public function findAllLike($value)
+    {
+        return $this->doctrine->getRepository('AppBundle:SSkill')->findAllLike($value);
+    }
 }
