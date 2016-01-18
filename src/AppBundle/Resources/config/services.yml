@@ -3,3 +3,8 @@ services:
         class: AppBundle\Services\SkillService
         arguments:
             - '@doctrine'
+
+    rqs.developer_profile:
+        class: AppBundle\Services\DeveloperProfileService
+        arguments:
+            - '@doctrine'

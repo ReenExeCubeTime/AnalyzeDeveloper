@@ -21,7 +21,7 @@ class SkillServiceTest extends KernelTestCase
 
     public function test()
     {
-        $this->service->add('PHP');
+        $this->service->create('PHP');
 
         $expected = ['PHP'];
         foreach (['PHP', 'PH', 'P', 'php', 'ph', 'p'] as $value) {

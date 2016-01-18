@@ -1,0 +1,13 @@
+AppBundle\Entity\SUser:
+    type: entity
+    table: s_user
+    repositoryClass: AppBundle\Repository\SUserRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY

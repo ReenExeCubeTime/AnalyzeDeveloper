@@ -14,7 +14,7 @@ class SkillService
         $this->doctrine = $doctrine;
     }
 
-    public function add($name)
+    public function create($name)
     {
         $skill = new SSkill();
 
