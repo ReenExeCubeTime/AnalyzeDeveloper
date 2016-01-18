@@ -32,6 +32,18 @@ class SDeveloperProfile
      */
     private $user;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $skills;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->skills = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -138,4 +150,39 @@ class SDeveloperProfile
     {
         return $this->user;
     }
+
+    /**
+     * Add skill
+     *
+     * @param \AppBundle\Entity\SSKill $skill
+     *
+     * @return SDeveloperProfile
+     */
+    public function addSkill(\AppBundle\Entity\SSKill $skill)
+    {
+        $this->skills[] = $skill;
+
+        return $this;
+    }
+
+    /**
+     * Remove skill
+     *
+     * @param \AppBundle\Entity\SSKill $skill
+     */
+    public function removeSkill(\AppBundle\Entity\SSKill $skill)
+    {
+        $this->skills->removeElement($skill);
+    }
+
+    /**
+     * Get skills
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
 }
+
