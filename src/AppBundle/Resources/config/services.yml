@@ -8,3 +8,8 @@ services:
         class: AppBundle\Services\DeveloperProfileService
         arguments:
             - '@doctrine'
+
+    rqs.user:
+        class: AppBundle\Services\UserService
+        arguments:
+            - '@doctrine'

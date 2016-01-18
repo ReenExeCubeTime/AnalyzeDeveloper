@@ -28,9 +28,12 @@ class Version20160107171420 extends AbstractMigration
                 );
             ',
             '
-                CREATE TABLE `s_user_profile`(
+                CREATE TABLE `s_developer_profile`(
                     `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
-                    `user_id` INT(11) NOT NULL
+                    `user_id` INT(11) NOT NULL,
+                    `title` VARCHAR(255),
+                    `description` TEXT,
+                    `salary` INT(11)
                 );
             ',
         ]);
