@@ -22,5 +22,9 @@ class SkillServiceTest extends KernelTestCase
     public function test()
     {
         $this->service->add('PHP');
+
+        $this->assertSame($this->service->findAllLike('PHP'), ['PHP']);
+        $this->assertSame($this->service->findAllLike('PH'), ['PHP']);
+        $this->assertSame($this->service->findAllLike('P'), ['PHP']);
     }
 }

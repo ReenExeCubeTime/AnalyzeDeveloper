@@ -10,4 +10,8 @@ namespace AppBundle\Repository;
  */
 class SSKillRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllLike($value)
+    {
+
+    }
 }
