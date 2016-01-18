@@ -2,30 +2,20 @@
 
 namespace Tests\AppBundle\Service;
 
-use AppBundle\Services\SkillService;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-
-class SkillServiceTest extends KernelTestCase
+class SkillServiceTest extends AbstractServiceTest
 {
-    /**
-     * @var SkillService
-     */
-    private $service;
-
-    public function setUp()
-    {
-        static::bootKernel();
-
-        $this->service = static::$kernel->getContainer()->get('rqs.skill');
-    }
-
     public function test()
     {
-        $this->service->create('PHP');
+        $this->getService()->create('PHP');
 
         $expected = ['PHP'];
         foreach (['PHP', 'PH', 'P', 'php', 'ph', 'p'] as $value) {
-            $this->assertSame($this->service->findAllLike($value), $expected);
+            $this->assertSame($this->getService()->findAllLike($value), $expected);
         }
+    }
+
+    private function getService()
+    {
+        return $this->container->get('rqs.skill');
     }
 }
