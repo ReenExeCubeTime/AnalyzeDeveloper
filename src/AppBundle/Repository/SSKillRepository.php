@@ -12,6 +12,14 @@ class SSKillRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findAllLike($value)
     {
+        $list = $this
+            ->createQueryBuilder('s')
+            ->select('s.name')
+            ->where('s.name LIKE :value')
+            ->setParameter('value', "%$value%")
+            ->getQuery()
+            ->getResult();
 
+        return array_column($list, 'name');
     }
 }
