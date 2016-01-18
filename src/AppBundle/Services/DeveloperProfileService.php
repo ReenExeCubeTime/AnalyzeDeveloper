@@ -20,6 +20,7 @@ class DeveloperProfileService
         $profile = new SDeveloperProfile();
 
         $profile
+            ->setUser($user)
             ->setTitle($title)
             ->setSalary($salary)
             ->setDescription($description);

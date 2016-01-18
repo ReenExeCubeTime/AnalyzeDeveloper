@@ -3,6 +3,15 @@ AppBundle\Entity\SDeveloperProfile:
     table: s_developer_profile
     repositoryClass: AppBundle\Repository\SDeveloperProfileRepository
 
+    manyToOne:
+        user:
+            targetEntity: AppBundle\Entity\SUser
+            inversedBy: developerProfiles
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+            fetch: EXTRA_LAZY
+
     id:
         id:
             type: integer

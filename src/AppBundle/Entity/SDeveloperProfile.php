@@ -27,6 +27,11 @@ class SDeveloperProfile
      */
     private $description;
 
+    /**
+     * @var \AppBundle\Entity\SUser
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -108,5 +113,29 @@ class SDeveloperProfile
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\SUser $user
+     *
+     * @return SDeveloperProfile
+     */
+    public function setUser(\AppBundle\Entity\SUser $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\SUser
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

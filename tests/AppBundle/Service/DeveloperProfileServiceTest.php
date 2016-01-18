@@ -19,6 +19,7 @@ class DeveloperProfileServiceTest extends AbstractServiceTest
             $description
         );
 
+        $this->assertSame($developerProfile->getUser(), $user);
         $this->assertSame($developerProfile->getTitle(), $title);
         $this->assertSame($developerProfile->getSalary(), $salary);
         $this->assertSame($developerProfile->getDescription(), $description);
