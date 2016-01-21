@@ -38,7 +38,7 @@ class DeveloperProfileService
                     ->setDeveloperProfile($profile)
                     ->setSkill($skill)
                     ->setScore(1)
-                    ->setIndex($index);
+                    ->setPosition($index);
 
                 $this->doctrine->getManager()->persist($developerToSkill);
             }

@@ -15,7 +15,7 @@ class SDeveloperProfileToSkill
     /**
      * @var integer
      */
-    private $index;
+    private $position;
 
     /**
      * @var integer
@@ -44,27 +44,27 @@ class SDeveloperProfileToSkill
     }
 
     /**
-     * Set index
+     * Set position
      *
-     * @param integer $index
+     * @param integer $position
      *
      * @return SDeveloperProfileToSkill
      */
-    public function setIndex($index)
+    public function setPosition($position)
     {
-        $this->index = $index;
+        $this->position = $position;
 
         return $this;
     }
 
     /**
-     * Get index
+     * Get position
      *
      * @return integer
      */
-    public function getIndex()
+    public function getPosition()
     {
-        return $this->index;
+        return $this->position;
     }
 
     /**

@@ -20,8 +20,8 @@ class Version20160118195617 extends AbstractMigration
                 `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
                 `developer_id` INT(11),
                 `skill_id` INT(11),
-                `index` TINYINT(1),
-                `score` TINYINT(1)
+                `position` TINYINT(11),
+                `score` TINYINT(11)
             );
         ');
     }

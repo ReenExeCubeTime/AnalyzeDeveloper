@@ -139,4 +139,3 @@ class SDeveloperProfile
         return $this->user;
     }
 }
-

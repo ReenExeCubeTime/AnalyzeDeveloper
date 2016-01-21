@@ -27,7 +27,7 @@ AppBundle\Entity\SDeveloperProfileToSkill:
                 referencedColumnName: id
 
     fields:
-        index:
+        position:
             type: integer
         score:
             type: integer
