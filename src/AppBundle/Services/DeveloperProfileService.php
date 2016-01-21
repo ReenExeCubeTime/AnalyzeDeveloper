@@ -25,16 +25,6 @@ class DeveloperProfileService
             ->setSalary($salary)
             ->setDescription($description);
 
-        if ($skills) {
-            $skillCollection = $this->doctrine->getRepository('AppBundle:SSkill')->findBy([
-                'name' => $skills
-            ]);
-
-            foreach ($skillCollection as $skill) {
-                $profile->getSkills()->add($skill);
-            }
-        }
-
         $this->doctrine->getManager()->persist($profile);
         $this->doctrine->getManager()->flush();
 

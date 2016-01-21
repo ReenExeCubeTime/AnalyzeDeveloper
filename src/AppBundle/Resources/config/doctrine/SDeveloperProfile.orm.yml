@@ -3,19 +3,6 @@ AppBundle\Entity\SDeveloperProfile:
     table: s_developer_profile
     repositoryClass: AppBundle\Repository\SDeveloperProfileRepository
 
-    manyToMany:
-        skills:
-            targetEntity: AppBundle\Entity\SSKill
-            fetch: EXTRA_LAZY
-            joinTable:
-                name: s_developer_to_skill
-                joinColumns:
-                    developer_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    skill_id:
-                        referencedColumnName: id
-
     manyToOne:
         user:
             targetEntity: AppBundle\Entity\SUser

@@ -19,7 +19,9 @@ class Version20160118195617 extends AbstractMigration
             CREATE TABLE `s_developer_to_skill`(
                 `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
                 `developer_id` INT(11),
-                `skill_id` INT(11)
+                `skill_id` INT(11),
+                `index` TINYINT(1),
+                `score` TINYINT(1)
             );
         ');
     }
