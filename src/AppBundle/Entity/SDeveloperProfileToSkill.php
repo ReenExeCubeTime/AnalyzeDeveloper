@@ -27,6 +27,11 @@ class SDeveloperProfileToSkill
      */
     private $developerProfile;
 
+    /**
+     * @var \AppBundle\Entity\SSKill
+     */
+    private $skill;
+
 
     /**
      * Get id
@@ -108,6 +113,30 @@ class SDeveloperProfileToSkill
     public function getDeveloperProfile()
     {
         return $this->developerProfile;
+    }
+
+    /**
+     * Set skill
+     *
+     * @param \AppBundle\Entity\SSKill $skill
+     *
+     * @return SDeveloperProfileToSkill
+     */
+    public function setSkill(\AppBundle\Entity\SSKill $skill = null)
+    {
+        $this->skill = $skill;
+
+        return $this;
+    }
+
+    /**
+     * Get skill
+     *
+     * @return \AppBundle\Entity\SSKill
+     */
+    public function getSkill()
+    {
+        return $this->skill;
     }
 }
 

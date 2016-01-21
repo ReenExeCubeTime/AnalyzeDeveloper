@@ -19,6 +19,12 @@ AppBundle\Entity\SDeveloperProfileToSkill:
             joinColumn:
                 name: developer_id
                 referencedColumnName: id
+        skill:
+            targetEntity: AppBundle\Entity\SSKill
+            fetch: EXTRA_LAZY
+            joinColumn:
+                name: skill_id
+                referencedColumnName: id
 
     fields:
         index:
