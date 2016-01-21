@@ -8,6 +8,22 @@ class DeveloperProfileServiceTest extends AbstractServiceTest
     {
         $user = $this->container->get('rqs.user')->getUser();
 
+        $skillService = $this->container->get('rqs.skill');
+
+        $skillService->clear();
+
+        $skills = [
+            'PHP',
+            'Redis',
+            'SQL',
+            'JavaScript',
+            'TDD',
+        ];
+
+        foreach ($skills as $skillName) {
+            $skillService->create($skillName);
+        }
+
         $title = 'Senior Developer';
         $salary = 5000;
         $description = 'All';
@@ -16,7 +32,8 @@ class DeveloperProfileServiceTest extends AbstractServiceTest
             $user,
             $title,
             $salary,
-            $description
+            $description,
+            $skills
         );
 
         $this->assertSame($developerProfile->getUser(), $user);
