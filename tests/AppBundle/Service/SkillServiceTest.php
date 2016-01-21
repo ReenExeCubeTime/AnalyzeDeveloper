@@ -6,6 +6,8 @@ class SkillServiceTest extends AbstractServiceTest
 {
     public function test()
     {
+        $this->getService()->clear();
+
         $this->getService()->create('PHP');
 
         $expected = ['PHP'];

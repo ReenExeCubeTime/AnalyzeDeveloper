@@ -16,10 +16,12 @@ class Version20160118195617 extends AbstractMigration
     public function up(Schema $schema)
     {
         $this->addSql('
-            CREATE TABLE `s_developer_to_skill`(
+            CREATE TABLE `s_developer_profile_to_skill`(
                 `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
                 `developer_id` INT(11),
-                `skill_id` INT(11)
+                `skill_id` INT(11),
+                `position` TINYINT(11),
+                `score` TINYINT(11)
             );
         ');
     }
