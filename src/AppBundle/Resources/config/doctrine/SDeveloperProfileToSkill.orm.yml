@@ -1,0 +1,27 @@
+AppBundle\Entity\SDeveloperProfileToSkill:
+    type: entity
+    table: s_developer_profile_to_skill
+    repositoryClass: AppBundle\Repository\SDeveloperProfileToSkillRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    manyToOne:
+        developerProfile:
+            targetEntity: AppBundle\Entity\SDeveloperProfile
+            fetch: EXTRA_LAZY
+            joinColumn:
+                name: developer_id
+                referencedColumnName: id
+
+    fields:
+        index:
+            type: integer
+        score:
+            type: integer
