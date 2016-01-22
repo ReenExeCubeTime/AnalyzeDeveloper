@@ -14,14 +14,16 @@ class DatabaseTesterService
         $this->doctrine = $doctrine;
     }
 
-    public function truncate($entity)
+    public function truncate(...$entities)
     {
         /* @var $connection \Doctrine\DBAL\Connection */
         $connection = $this->doctrine->getConnection();
 
-        /* @var $metadata ClassMetadata */
-        $metadata = $this->doctrine->getManager()->getClassMetadata("AppBundle:$entity");
+        foreach ($entities as $entity) {
+            /* @var $metadata ClassMetadata */
+            $metadata = $this->doctrine->getManager()->getClassMetadata("AppBundle:$entity");
 
-        $connection->executeQuery("TRUNCATE TABLE {$metadata->table['name']};");
+            $connection->executeQuery("TRUNCATE TABLE {$metadata->table['name']};");
+        }
     }
 }

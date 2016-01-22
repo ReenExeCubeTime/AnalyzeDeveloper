@@ -13,9 +13,11 @@ class DeveloperProfileServiceTest extends AbstractServiceTest
 
         $skillService = $this->container->get('rqs.skill');
 
-        $this->container->get('rqs.database_tester')->truncate('SSkill');
-        $this->container->get('rqs.database_tester')->truncate('SDeveloperProfile');
-        $this->container->get('rqs.database_tester')->truncate('SDeveloperProfileToSkill');
+        $this->container->get('rqs.database_tester')->truncate(
+            'SSkill',
+            'SDeveloperProfile',
+            'SDeveloperProfileToSkill'
+        );
 
         $skills = [
             'PHP',
