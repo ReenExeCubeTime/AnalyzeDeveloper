@@ -12,6 +12,12 @@ AppBundle\Entity\SDeveloperProfile:
                 referencedColumnName: id
             fetch: EXTRA_LAZY
 
+    oneToMany:
+        skills:
+            targetEntity: AppBundle\Entity\SDeveloperProfileToSkill
+            mappedBy: developerProfile
+            fetch: EXTRA_LAZY
+
     id:
         id:
             type: integer

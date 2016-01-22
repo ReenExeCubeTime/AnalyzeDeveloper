@@ -15,6 +15,7 @@ AppBundle\Entity\SDeveloperProfileToSkill:
     manyToOne:
         developerProfile:
             targetEntity: AppBundle\Entity\SDeveloperProfile
+            inversedBy: skills
             fetch: EXTRA_LAZY
             joinColumn:
                 name: developer_id
