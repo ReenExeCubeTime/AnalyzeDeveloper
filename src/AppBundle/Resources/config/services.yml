@@ -13,3 +13,8 @@ services:
         class: AppBundle\Service\UserService
         arguments:
             - '@doctrine'
+
+    rqs.database_tester:
+        class: AppBundle\Service\DatabaseTesterService
+        arguments:
+            - '@doctrine'

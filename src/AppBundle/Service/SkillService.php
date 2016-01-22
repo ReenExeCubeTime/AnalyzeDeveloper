@@ -17,8 +17,6 @@ class SkillService
 
     public function create($name)
     {
-        if ($this->exists($name)) return;
-
         $skill = new SSkill();
 
         $skill->setName($name);
@@ -37,16 +35,5 @@ class SkillService
         return (bool)$this->doctrine->getRepository('AppBundle:SSkill')->findOneBy([
             'name' => $name
         ]);
-    }
-
-    public function clear()
-    {
-        /* @var $connection \Doctrine\DBAL\Connection */
-        $connection = $this->doctrine->getConnection();
-
-        /* @var $metadata ClassMetadata */
-        $metadata = $this->doctrine->getManager()->getClassMetadata('AppBundle:SSkill');
-
-        $connection->executeQuery("TRUNCATE TABLE {$metadata->table['name']};");
     }
 }
