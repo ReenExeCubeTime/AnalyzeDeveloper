@@ -41,6 +41,7 @@ class DeveloperProfileService
                     ->setPosition($index);
 
                 $this->doctrine->getManager()->persist($developerToSkill);
+                $profile->addSkill($developerToSkill);
             }
         }
 
