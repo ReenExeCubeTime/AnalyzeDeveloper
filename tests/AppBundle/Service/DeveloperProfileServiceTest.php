@@ -4,13 +4,18 @@ namespace Tests\AppBundle\Service;
 
 class DeveloperProfileServiceTest extends AbstractServiceTest
 {
+    /**
+     * @covers \AppBundle\Service\DeveloperProfileService::create
+     */
     public function test()
     {
         $user = $this->container->get('rqs.user')->getUser();
 
         $skillService = $this->container->get('rqs.skill');
 
-        $skillService->clear();
+        $this->container->get('rqs.database_tester')->truncate('SSkill');
+        $this->container->get('rqs.database_tester')->truncate('SDeveloperProfile');
+        $this->container->get('rqs.database_tester')->truncate('SDeveloperProfileToSkill');
 
         $skills = [
             'PHP',
