@@ -22,4 +22,15 @@ class SSKillRepository extends \Doctrine\ORM\EntityRepository
 
         return array_column($list, 'name');
     }
+
+    public function exists($name)
+    {
+        return (bool)$this->createQueryBuilder('s')
+            ->select('1')
+            ->where('s.name = :name')
+            ->setParameter('name', $name)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

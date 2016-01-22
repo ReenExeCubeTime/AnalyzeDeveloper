@@ -32,8 +32,6 @@ class SkillService
 
     public function exists($name)
     {
-        return (bool)$this->doctrine->getRepository('AppBundle:SSkill')->findOneBy([
-            'name' => $name
-        ]);
+        return $this->doctrine->getRepository('AppBundle:SSkill')->exists($name);
     }
 }
