@@ -26,11 +26,7 @@ class DeveloperProfileService
             ->setSalary($salary)
             ->setDescription($description);
 
-        if ($skills) {
-            $skillCollection = $this->doctrine->getRepository('AppBundle:SSkill')->findBy([
-                'name' => $skills
-            ]);
-
+        if ($skillCollection = $this->getSkillCollection($skills)) {
             foreach ($skillCollection as $index => $skill) {
                 $developerToSkill = new SDeveloperProfileToSkill();
 
@@ -49,5 +45,14 @@ class DeveloperProfileService
         $this->doctrine->getManager()->flush();
 
         return $profile;
+    }
+
+    private function getSkillCollection(array $skills)
+    {
+        if ($skills) {
+            return $this->doctrine->getRepository('AppBundle:SSkill')->findBy([
+                'name' => $skills
+            ]);
+        }
     }
 }
