@@ -4,6 +4,9 @@ namespace Tests\AppBundle\Service;
 
 class SkillServiceTest extends AbstractServiceTest
 {
+    /**
+     * @covers \AppBundle\Service\SkillService::create
+     */
     public function test()
     {
         $this->getService()->clear();

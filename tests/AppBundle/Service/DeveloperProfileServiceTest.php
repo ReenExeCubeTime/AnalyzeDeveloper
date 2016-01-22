@@ -4,6 +4,9 @@ namespace Tests\AppBundle\Service;
 
 class DeveloperProfileServiceTest extends AbstractServiceTest
 {
+    /**
+     * @covers \AppBundle\Service\DeveloperProfileService::create
+     */
     public function test()
     {
         $user = $this->container->get('rqs.user')->getUser();

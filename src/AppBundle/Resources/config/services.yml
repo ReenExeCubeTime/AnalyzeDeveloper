@@ -1,15 +1,15 @@
 services:
     rqs.skill:
-        class: AppBundle\Services\SkillService
+        class: AppBundle\Service\SkillService
         arguments:
             - '@doctrine'
 
     rqs.developer_profile:
-        class: AppBundle\Services\DeveloperProfileService
+        class: AppBundle\Service\DeveloperProfileService
         arguments:
             - '@doctrine'
 
     rqs.user:
-        class: AppBundle\Services\UserService
+        class: AppBundle\Service\UserService
         arguments:
             - '@doctrine'
