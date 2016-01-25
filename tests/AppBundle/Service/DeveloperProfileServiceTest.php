@@ -21,9 +21,7 @@ class DeveloperProfileServiceTest extends AbstractServiceTest
             'TDD',
         ];
 
-        foreach ($skills as $skillName) {
-            $skillService->create($skillName);
-        }
+        $skillService->create(...$skills);
 
         $title = 'Senior Developer';
         $salary = 5000;

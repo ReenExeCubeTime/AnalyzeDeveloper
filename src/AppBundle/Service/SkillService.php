@@ -14,13 +14,16 @@ class SkillService
         $this->doctrine = $doctrine;
     }
 
-    public function create($name)
+    public function create(... $names)
     {
-        $skill = new SSkill();
+        foreach ($names as $name) {
+            $skill = new SSkill();
 
-        $skill->setName($name);
+            $skill->setName($name);
 
-        $this->doctrine->getManager()->persist($skill);
+            $this->doctrine->getManager()->persist($skill);
+        }
+
         $this->doctrine->getManager()->flush();
     }
 
