@@ -28,10 +28,27 @@ class SDeveloperProfile
     private $description;
 
     /**
+     * @var \AppBundle\Entity\SDeveloperProfileSearchParameter
+     */
+    private $searchParameter;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $skills;
+
+    /**
      * @var \AppBundle\Entity\SUser
      */
     private $user;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->skills = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -116,39 +133,27 @@ class SDeveloperProfile
     }
 
     /**
-     * Set user
+     * Set searchParameter
      *
-     * @param \AppBundle\Entity\SUser $user
+     * @param \AppBundle\Entity\SDeveloperProfileSearchParameter $searchParameter
      *
      * @return SDeveloperProfile
      */
-    public function setUser(\AppBundle\Entity\SUser $user = null)
+    public function setSearchParameter(\AppBundle\Entity\SDeveloperProfileSearchParameter $searchParameter = null)
     {
-        $this->user = $user;
+        $this->searchParameter = $searchParameter;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get searchParameter
      *
-     * @return \AppBundle\Entity\SUser
+     * @return \AppBundle\Entity\SDeveloperProfileSearchParameter
      */
-    public function getUser()
+    public function getSearchParameter()
     {
-        return $this->user;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $skills;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->skills = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->searchParameter;
     }
 
     /**
@@ -183,5 +188,29 @@ class SDeveloperProfile
     public function getSkills()
     {
         return $this->skills;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\SUser $user
+     *
+     * @return SDeveloperProfile
+     */
+    public function setUser(\AppBundle\Entity\SUser $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\SUser
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
