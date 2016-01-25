@@ -28,7 +28,7 @@ class DeveloperProfileService
             ->setDescription($description);
 
         if ($skillCollection = $this->getSkillCollection($skills)) {
-            $emptyBitSet = str_repeat('0', SDeveloperProfileSearchParameter::SKILL_BIT_SET_SIZE);
+            $emptyBitSet = $this->getEmptySkillBitSet();
 
             foreach ($skillCollection as $index => $skill) {
                 $developerToSkill = new SDeveloperProfileToSkill();
@@ -58,6 +58,11 @@ class DeveloperProfileService
         $this->doctrine->getManager()->flush();
 
         return $profile;
+    }
+
+    public function getEmptySkillBitSet()
+    {
+        return str_repeat('0', SDeveloperProfileSearchParameter::SKILL_BIT_SET_SIZE);
     }
 
     private function getSkillCollection(array $skills)

@@ -35,11 +35,21 @@ class DeveloperProfileServiceTest extends AbstractServiceTest
             $skills
         );
 
+        $skillCount = count($skills);
+
         $this->assertSame($developerProfile->getUser(), $this->getTestUser());
         $this->assertSame($developerProfile->getTitle(), $title);
         $this->assertSame($developerProfile->getSalary(), $salary);
         $this->assertSame($developerProfile->getDescription(), $description);
-        $this->assertSame($developerProfile->getSkills()->count(), count($skills));
+        $this->assertSame($developerProfile->getSkills()->count(), $skillCount);
+
+        $skillBitSet = $this->getService()->getEmptySkillBitSet();
+
+        while($index = $skillCount--) {
+            $skillBitSet[$index] = '1';
+        }
+
+        $this->assertSame($developerProfile->getSearchParameter()->getSkillBitSet(), $skillBitSet);
     }
 
     private function getService()
