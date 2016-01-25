@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use Tests\AppBundle\Service\DeveloperSearchParameterParser;
 
 class DeveloperSearcherService implements DeveloperSearcherServiceInterface
 {
@@ -20,6 +21,12 @@ class DeveloperSearcherService implements DeveloperSearcherServiceInterface
      */
     public function search(ParameterBag $parameters)
     {
-        return $this->doctrine->getManager()->getRepository('AppBundle:SDeveloperProfile')->findAll();
+        $skills = $parameters->get(DeveloperSearchParameterParser::SKILL, []);
+
+        return $this
+            ->doctrine
+            ->getManager()
+            ->getRepository('AppBundle:SDeveloperProfile')
+            ->search($skills);
     }
 }

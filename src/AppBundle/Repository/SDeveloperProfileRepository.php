@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class SDeveloperProfileRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function search(array $skillIdList)
+    {
+        return $this
+            ->createQueryBuilder('dp')
+            ->getQuery()
+            ->getResult();
+    }
 }
