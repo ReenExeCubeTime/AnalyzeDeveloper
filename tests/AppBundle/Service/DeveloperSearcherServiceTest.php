@@ -6,6 +6,13 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 
 class DeveloperSearcherServiceTest extends AbstractServiceTest
 {
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->container->get('rqs.database.tester')->clear();
+    }
+
     /**
      * @covers \AppBundle\Service\DeveloperSearcherService::search
      * @dataProvider dataProvider
