@@ -1,0 +1,27 @@
+AppBundle\Entity\SDeveloperProfileSearchParameter:
+    type: entity
+    table: s_developer_profile_search_parameter
+    repositoryClass: AppBundle\Repository\SDeveloperProfileSearchParameterRepository
+
+    oneToOne:
+        developerProfile:
+            targetEntity: AppBundle\Entity\SDeveloperProfile
+            inversedBy: searchParameter
+            joinColumn:
+                name: developer
+                referencedColumnName: id
+            fetch: EXTRA_LAZY
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    fields:
+        skillBitSet:
+            type: string
+            column: skill_bit_set

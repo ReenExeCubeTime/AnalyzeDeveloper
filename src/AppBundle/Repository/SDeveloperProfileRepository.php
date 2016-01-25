@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Searcher\DevelopProfileParameter;
+use Doctrine\ORM\QueryBuilder;
+
 /**
  * SDeveloperProfileRepository
  *
@@ -10,4 +13,21 @@ namespace AppBundle\Repository;
  */
 class SDeveloperProfileRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function search(DevelopProfileParameter $developProfileParameter)
+    {
+        $queryBuilder = $this->createQueryBuilder('dp');
+
+        $this->useSearchParameter($queryBuilder, $developProfileParameter);
+
+        return $queryBuilder
+            ->getQuery()
+            ->getResult();
+    }
+
+    private function useSearchParameter(QueryBuilder $queryBuilder, DevelopProfileParameter $developProfileParameter)
+    {
+        if ($developProfileParameter->getSkillBitSetPattern()) {
+            // TODO...
+        }
+    }
 }

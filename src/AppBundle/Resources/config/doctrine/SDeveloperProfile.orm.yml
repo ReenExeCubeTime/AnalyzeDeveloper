@@ -18,6 +18,12 @@ AppBundle\Entity\SDeveloperProfile:
             mappedBy: developerProfile
             fetch: EXTRA_LAZY
 
+    oneToOne:
+        searchParameter:
+            targetEntity: AppBundle\Entity\SDeveloperProfileSearchParameter
+            mappedBy: developerProfile
+            fetch: EXTRA_LAZY
+
     id:
         id:
             type: integer

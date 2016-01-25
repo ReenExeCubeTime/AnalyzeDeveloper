@@ -23,7 +23,16 @@ class DatabaseTesterService
             /* @var $metadata ClassMetadata */
             $metadata = $this->doctrine->getManager()->getClassMetadata("AppBundle:$entity");
 
-            $connection->executeQuery("TRUNCATE TABLE {$metadata->table['name']};");
+            $connection->exec("TRUNCATE TABLE {$metadata->table['name']};");
         }
+    }
+
+    public function clear()
+    {
+        $this->truncate(
+            'SSkill',
+            'SDeveloperProfile',
+            'SDeveloperProfileToSkill'
+        );
     }
 }

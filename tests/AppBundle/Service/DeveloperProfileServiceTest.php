@@ -9,15 +9,9 @@ class DeveloperProfileServiceTest extends AbstractServiceTest
      */
     public function test()
     {
-        $user = $this->container->get('rqs.user')->getUser();
-
         $skillService = $this->container->get('rqs.skill');
 
-        $this->container->get('rqs.database_tester')->truncate(
-            'SSkill',
-            'SDeveloperProfile',
-            'SDeveloperProfileToSkill'
-        );
+        $this->container->get('rqs.database.tester')->clear();
 
         $skills = [
             'PHP',
@@ -27,23 +21,21 @@ class DeveloperProfileServiceTest extends AbstractServiceTest
             'TDD',
         ];
 
-        foreach ($skills as $skillName) {
-            $skillService->create($skillName);
-        }
+        $skillService->create(...$skills);
 
         $title = 'Senior Developer';
         $salary = 5000;
         $description = 'All';
 
         $developerProfile = $this->getService()->create(
-            $user,
+            $this->getTestUser(),
             $title,
             $salary,
             $description,
             $skills
         );
 
-        $this->assertSame($developerProfile->getUser(), $user);
+        $this->assertSame($developerProfile->getUser(), $this->getTestUser());
         $this->assertSame($developerProfile->getTitle(), $title);
         $this->assertSame($developerProfile->getSalary(), $salary);
         $this->assertSame($developerProfile->getDescription(), $description);

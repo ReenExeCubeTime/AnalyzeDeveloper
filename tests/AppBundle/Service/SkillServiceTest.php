@@ -11,7 +11,7 @@ class SkillServiceTest extends AbstractServiceTest
      */
     public function test()
     {
-        $this->container->get('rqs.database_tester')->truncate('SSkill');
+        $this->container->get('rqs.database.tester')->truncate('SSkill');
 
         $this->getService()->create('PHP');
 
