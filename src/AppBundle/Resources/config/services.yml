@@ -9,10 +9,14 @@ services:
         arguments:
             - '@doctrine'
 
+    rqs.developer.profile.parameter.parser:
+        class: AppBundle\Service\DeveloperSearchParameterParser
+
     rqs.developer.searcher:
         class: AppBundle\Service\DeveloperSearcherService
         arguments:
             - '@doctrine'
+            - '@rqs.developer.profile.parameter.parser'
 
     rqs.user:
         class: AppBundle\Service\UserService
