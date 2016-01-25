@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\SDeveloperProfile;
+use AppBundle\Entity\SDeveloperProfileSearchParameter;
 use AppBundle\Entity\SDeveloperProfileToSkill;
 use AppBundle\Entity\SUser;
 use Doctrine\Bundle\DoctrineBundle\Registry;
@@ -27,8 +28,12 @@ class DeveloperProfileService
             ->setDescription($description);
 
         if ($skillCollection = $this->getSkillCollection($skills)) {
+            $emptyBitSet = str_repeat('0', SDeveloperProfileSearchParameter::SKILL_BIT_SET_SIZE);
+
             foreach ($skillCollection as $index => $skill) {
                 $developerToSkill = new SDeveloperProfileToSkill();
+
+                $emptyBitSet[$skill->getId()] = '1';
 
                 $developerToSkill
                     ->setDeveloperProfile($profile)
@@ -39,6 +44,14 @@ class DeveloperProfileService
                 $this->doctrine->getManager()->persist($developerToSkill);
                 $profile->addSkill($developerToSkill);
             }
+
+            $searchParameter = new SDeveloperProfileSearchParameter();
+            $searchParameter
+                ->setDeveloperProfile($profile)
+                ->setSkillBitSet($emptyBitSet);
+
+            $this->doctrine->getManager()->persist($searchParameter);
+            $profile->setSearchParameter($searchParameter);
         }
 
         $this->doctrine->getManager()->persist($profile);
