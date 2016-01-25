@@ -2,6 +2,7 @@
 
 namespace Tests\AppBundle\Service;
 
+use AppBundle\Entity\SDeveloperProfileSearchParameter;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class DeveloperSearchParameterParserTest extends AbstractServiceTest
@@ -21,7 +22,7 @@ class DeveloperSearchParameterParserTest extends AbstractServiceTest
     {
         $developProfileParameter = $this->parse([]);
 
-        $emptyBitSetPattern = str_repeat('*', 256);
+        $emptyBitSetPattern = str_repeat('*', SDeveloperProfileSearchParameter::SKILL_BIT_SET_SIZE);
 
         $this->assertSame($developProfileParameter->getSkillBitSetPattern(), $emptyBitSetPattern);
     }

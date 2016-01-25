@@ -7,6 +7,8 @@ namespace AppBundle\Entity;
  */
 class SDeveloperProfileSearchParameter
 {
+    const SKILL_BIT_SET_SIZE = 255;
+
     /**
      * @var integer
      */
@@ -18,7 +20,7 @@ class SDeveloperProfileSearchParameter
     private $skillBitSet;
 
     /**
-     * @var \AppBundle\Entity\SDeveloper
+     * @var \AppBundle\Entity\SDeveloperProfile
      */
     private $developerProfile;
 
@@ -60,11 +62,11 @@ class SDeveloperProfileSearchParameter
     /**
      * Set developerProfile
      *
-     * @param \AppBundle\Entity\SDeveloper $developerProfile
+     * @param \AppBundle\Entity\SDeveloperProfile $developerProfile
      *
      * @return SDeveloperProfileSearchParameter
      */
-    public function setDeveloperProfile(\AppBundle\Entity\SDeveloper $developerProfile = null)
+    public function setDeveloperProfile(\AppBundle\Entity\SDeveloperProfile $developerProfile = null)
     {
         $this->developerProfile = $developerProfile;
 
@@ -74,7 +76,7 @@ class SDeveloperProfileSearchParameter
     /**
      * Get developerProfile
      *
-     * @return \AppBundle\Entity\SDeveloper
+     * @return \AppBundle\Entity\SDeveloperProfile
      */
     public function getDeveloperProfile()
     {

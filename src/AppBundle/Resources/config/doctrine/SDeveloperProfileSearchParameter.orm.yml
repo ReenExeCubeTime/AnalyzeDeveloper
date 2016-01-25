@@ -5,7 +5,7 @@ AppBundle\Entity\SDeveloperProfileSearchParameter:
 
     oneToOne:
         developerProfile:
-            targetEntity: AppBundle\Entity\SDeveloper
+            targetEntity: AppBundle\Entity\SDeveloperProfile
             inversedBy: searchParameter
             joinColumn:
                 name: developer
