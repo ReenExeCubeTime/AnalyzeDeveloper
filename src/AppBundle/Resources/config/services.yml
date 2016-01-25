@@ -9,6 +9,9 @@ services:
         arguments:
             - '@doctrine'
 
+    rqs.developer.searcher:
+        class: AppBundle\Service\DeveloperSearcherService
+
     rqs.user:
         class: AppBundle\Service\UserService
         arguments:
