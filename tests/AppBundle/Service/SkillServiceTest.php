@@ -7,6 +7,7 @@ class SkillServiceTest extends AbstractServiceTest
     /**
      * @covers \AppBundle\Service\SkillService::create
      * @covers \AppBundle\Service\SkillService::exists
+     * @covers \AppBundle\Service\SkillService::findAllLike
      */
     public function test()
     {
