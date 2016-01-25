@@ -11,6 +11,6 @@ class DeveloperSearchParameterParser implements ParameterParser
 
     public function parse(ParameterBag $parameters)
     {
-        return new DevelopProfileParameter();
+        return new DevelopProfileParameter(str_repeat('*', 256));
     }
 }
