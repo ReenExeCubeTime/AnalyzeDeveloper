@@ -4,7 +4,6 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\SSkill;
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use Doctrine\ORM\Mapping\ClassMetadata;
 
 class SkillService
 {
