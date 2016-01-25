@@ -35,7 +35,7 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
     {
         yield [
             [],
-            [1]
+            [1, 2, 3]
         ];
     }
 
@@ -48,7 +48,7 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
     {
         $this->container->get('rqs.database.tester')->clear();
 
-        $skills = [
+        $allSkills = [
             'PHP',
             'Redis',
             'SQL',
@@ -56,17 +56,39 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
             'TDD',
         ];
 
-        $this->container->get('rqs.skill')->create(...$skills);
+        $this->container->get('rqs.skill')->create(...$allSkills);
 
-        $title = 'Senior Developer';
-        $salary = 5000;
-        $description = 'All';
+        $developerProfileDataList = [
+            [
+                'Senior Developer',
+                5000,
+                'All',
+                [],
+            ],
 
-        $developerProfile = $this->container->get('rqs.developer_profile')->create(
-            $this->getTestUser(),
-            $title,
-            $salary,
-            $description
-        );
+            [
+                'Middle Developer',
+                2500,
+                'Some',
+                [],
+            ],
+
+            [
+                'Junior Developer',
+                1000,
+                'Some',
+                [],
+            ],
+        ];
+
+        foreach ($developerProfileDataList as list($title, $salary, $description, $skills)) {
+            $this->container->get('rqs.developer_profile')->create(
+                $this->getTestUser(),
+                $title,
+                $salary,
+                $description,
+                $skills
+            );
+        }
     }
 }
