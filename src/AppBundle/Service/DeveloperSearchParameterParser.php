@@ -2,28 +2,26 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Entity\SDeveloperProfileSearchParameter;
 use AppBundle\Searcher\DevelopProfileParameter;
 use Symfony\Component\HttpFoundation\ParameterBag;
-use Doctrine\Bundle\DoctrineBundle\Registry;
 
 class DeveloperSearchParameterParser implements ParameterParser
 {
     const SKILL = 's';
 
     /**
-     * @var Registry
+     * @var SkillService
      */
-    private $doctrine;
+    private $skillService;
 
     /**
      * @var DevelopProfileSearchParameterService
      */
     private $searchParameter;
 
-    public function __construct(Registry $doctrine, DevelopProfileSearchParameterService $searchParameter)
+    public function __construct(SkillService $skillService, DevelopProfileSearchParameterService $searchParameter)
     {
-        $this->doctrine = $doctrine;
+        $this->skillService = $skillService;
 
         $this->searchParameter = $searchParameter;
     }
@@ -35,7 +33,12 @@ class DeveloperSearchParameterParser implements ParameterParser
         $emptySkillBitSet = $this->searchParameter->getEmptySkillBitSet('*');
 
         if ($skillAliases) {
-            $emptySkillBitSet[1] = '1';
+            $skillAliasList = explode(',', $skillAliases);
+            $skillIdList = $this->skillService->getIdList($skillAliasList);
+
+            foreach ($skillIdList as $skillId) {
+                $emptySkillBitSet[$skillId] = '1';
+            }
         }
 
         return new DevelopProfileParameter($emptySkillBitSet);

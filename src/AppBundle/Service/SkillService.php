@@ -32,6 +32,11 @@ class SkillService
         return $this->doctrine->getRepository('AppBundle:SSkill')->findAllLike($value);
     }
 
+    public function getIdList(array $names)
+    {
+        return $this->doctrine->getRepository('AppBundle:SSkill')->getIdList($names);
+    }
+
     public function exists($name)
     {
         return $this->doctrine->getRepository('AppBundle:SSkill')->exists($name);
