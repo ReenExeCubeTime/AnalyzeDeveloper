@@ -2,6 +2,7 @@
 
 namespace Tests\AppBundle\Service;
 
+use AppBundle\Service\DeveloperSearchParameterParser;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class DeveloperSearcherServiceTest extends AbstractServiceTest
@@ -35,6 +36,13 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
             [],
             [1, 2, 3]
         ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP,Redis,SQL,JavaScript,TDD'
+            ],
+            [1]
+        ];
     }
 
     private function getService()
@@ -61,7 +69,7 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
                 'Senior Developer',
                 5000,
                 'All',
-                [],
+                $allSkills,
             ],
 
             [
