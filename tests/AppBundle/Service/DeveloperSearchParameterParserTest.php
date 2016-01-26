@@ -2,7 +2,7 @@
 
 namespace Tests\AppBundle\Service;
 
-use AppBundle\Entity\SDeveloperProfileSearchParameter;
+use AppBundle\Service\DeveloperSearchParameterParser;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class DeveloperSearchParameterParserTest extends AbstractServiceTest
@@ -22,9 +22,19 @@ class DeveloperSearchParameterParserTest extends AbstractServiceTest
     {
         $developProfileParameter = $this->parse([]);
 
-        $emptyBitSetPattern = $this->container->get('rqs.developer_profile')->getEmptySkillBitSet('*');
+        $bitSetPattern = $this->container->get('rqs.developer_profile')->getEmptySkillBitSet('*');
 
-        $this->assertSame($developProfileParameter->getSkillBitSetPattern(), $emptyBitSetPattern);
+        $this->assertSame($developProfileParameter->getSkillBitSetPattern(), $bitSetPattern);
+
+        $developProfileParameter = $this->parse([
+            DeveloperSearchParameterParser::SKILL => 'PHP'
+        ]);
+
+        $bitSetPattern = $this->container->get('rqs.developer_profile')->getEmptySkillBitSet('*');
+
+        $bitSetPattern[1] = '1';
+
+        $this->assertSame($developProfileParameter->getSkillBitSetPattern(), $bitSetPattern);
     }
 
     private function createParameterList()
