@@ -28,19 +28,30 @@ class DeveloperSearchParameterParser implements ParameterParser
 
     public function parse(ParameterBag $parameters)
     {
-        $skillAliases = $parameters->get(self::SKILL);
+        return new DevelopProfileParameter(
+            $this->getSkillBitSet($parameters->get(self::SKILL))
+        );
+    }
 
-        $emptySkillBitSet = $this->searchParameter->getSkillBitSet('*');
-
-        if ($skillAliases) {
-            $skillAliasList = explode(',', $skillAliases);
-            $skillIdList = $this->skillService->getIdList($skillAliasList);
-
-            foreach ($skillIdList as $skillId) {
-                $emptySkillBitSet[$skillId] = '1';
-            }
+    private function getSkillBitSet($skillAliases)
+    {
+        if (empty($skillAliases)) {
+            return false;
         }
 
-        return new DevelopProfileParameter($emptySkillBitSet);
+        $skillAliasList = explode(',', $skillAliases);
+        $skillIdList = $this->skillService->getIdList($skillAliasList);
+
+        if (empty($skillIdList)) {
+            return false;
+        }
+
+        $emptySkillBitSet = $this->searchParameter->getSkillBitSet('_');
+
+        foreach ($skillIdList as $skillId) {
+            $emptySkillBitSet[$skillId] = '1';
+        }
+
+        return $emptySkillBitSet;
     }
 }
