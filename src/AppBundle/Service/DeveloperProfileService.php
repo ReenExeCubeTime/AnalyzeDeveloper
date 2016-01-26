@@ -32,7 +32,7 @@ class DeveloperProfileService
             ->setDescription($description);
 
         if ($skillCollection = $this->getSkillCollection($skills)) {
-            $emptyBitSet = $this->searchParameter->getEmptySkillBitSet();
+            $emptyBitSet = $this->searchParameter->getSkillBitSet();
 
             foreach ($skillCollection as $index => $skill) {
                 $developerToSkill = new SDeveloperProfileToSkill();

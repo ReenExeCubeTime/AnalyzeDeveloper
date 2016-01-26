@@ -30,7 +30,7 @@ class DeveloperSearchParameterParser implements ParameterParser
     {
         $skillAliases = $parameters->get(self::SKILL);
 
-        $emptySkillBitSet = $this->searchParameter->getEmptySkillBitSet('*');
+        $emptySkillBitSet = $this->searchParameter->getSkillBitSet('*');
 
         if ($skillAliases) {
             $skillAliasList = explode(',', $skillAliases);

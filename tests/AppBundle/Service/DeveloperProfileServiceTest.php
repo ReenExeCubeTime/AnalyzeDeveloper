@@ -43,7 +43,7 @@ class DeveloperProfileServiceTest extends AbstractServiceTest
         $this->assertSame($developerProfile->getDescription(), $description);
         $this->assertSame($developerProfile->getSkills()->count(), $skillCount);
 
-        $skillBitSet = $this->container->get('rqs.developer.profile.search.parameter')->getEmptySkillBitSet();
+        $skillBitSet = $this->container->get('rqs.developer.profile.search.parameter')->getSkillBitSet();
 
         while($index = $skillCount--) {
             $skillBitSet[$index] = '1';

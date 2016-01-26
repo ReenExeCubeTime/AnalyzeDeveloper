@@ -6,8 +6,14 @@ use AppBundle\Entity\SDeveloperProfileSearchParameter;
 
 class DevelopProfileSearchParameterService
 {
-    public function getEmptySkillBitSet($char = '0')
+    public function getSkillBitSet($char = '0', array $skillIdList = [])
     {
-        return str_repeat($char, SDeveloperProfileSearchParameter::SKILL_BIT_SET_SIZE);
+        $bitSet = str_repeat($char, SDeveloperProfileSearchParameter::SKILL_BIT_SET_SIZE);
+
+        foreach ($skillIdList as $skillId) {
+            $bitSet[$skillId] = '1';
+        }
+
+        return $bitSet;
     }
 }
