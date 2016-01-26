@@ -42,6 +42,13 @@ class DeveloperSearchParameterParserTest extends AbstractServiceTest
             ],
             $service->getSkillBitSet('*', [1])
         ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP,TDD'
+            ],
+            $service->getSkillBitSet('*', [1, 5])
+        ];
     }
 
     private function createParameterList()
