@@ -82,7 +82,7 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
         ];
 
         foreach ($developerProfileDataList as list($title, $salary, $description, $skills)) {
-            $this->container->get('rqs.developer_profile')->create(
+            $this->container->get('rqs.developer.profile')->create(
                 $this->getTestUser(),
                 $title,
                 $salary,

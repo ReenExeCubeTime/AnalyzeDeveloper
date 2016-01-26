@@ -22,7 +22,7 @@ class DeveloperSearchParameterParserTest extends AbstractServiceTest
     {
         $developProfileParameter = $this->parse([]);
 
-        $bitSetPattern = $this->container->get('rqs.developer_profile')->getEmptySkillBitSet('*');
+        $bitSetPattern = $this->container->get('rqs.developer.profile.search.parameter')->getEmptySkillBitSet('*');
 
         $this->assertSame($developProfileParameter->getSkillBitSetPattern(), $bitSetPattern);
 
@@ -30,7 +30,7 @@ class DeveloperSearchParameterParserTest extends AbstractServiceTest
             DeveloperSearchParameterParser::SKILL => 'PHP'
         ]);
 
-        $bitSetPattern = $this->container->get('rqs.developer_profile')->getEmptySkillBitSet('*');
+        $bitSetPattern = $this->container->get('rqs.developer.profile.search.parameter')->getEmptySkillBitSet('*');
 
         $bitSetPattern[1] = '1';
 

@@ -12,9 +12,13 @@ class DeveloperProfileService
 {
     private $doctrine;
 
-    public function __construct(Registry $doctrine)
+    private $searchParameter;
+
+    public function __construct(Registry $doctrine, DevelopProfileSearchParameterService $searchParameter)
     {
         $this->doctrine = $doctrine;
+
+        $this->searchParameter = $searchParameter;
     }
 
     public function create(SUser $user, $title, $salary, $description, array $skills = [])
@@ -28,7 +32,7 @@ class DeveloperProfileService
             ->setDescription($description);
 
         if ($skillCollection = $this->getSkillCollection($skills)) {
-            $emptyBitSet = $this->getEmptySkillBitSet();
+            $emptyBitSet = $this->searchParameter->getEmptySkillBitSet();
 
             foreach ($skillCollection as $index => $skill) {
                 $developerToSkill = new SDeveloperProfileToSkill();
@@ -58,11 +62,6 @@ class DeveloperProfileService
         $this->doctrine->getManager()->flush();
 
         return $profile;
-    }
-
-    public function getEmptySkillBitSet($char = '0')
-    {
-        return str_repeat($char, SDeveloperProfileSearchParameter::SKILL_BIT_SET_SIZE);
     }
 
     private function getSkillCollection(array $skills)
