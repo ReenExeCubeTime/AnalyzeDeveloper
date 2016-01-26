@@ -22,7 +22,7 @@ class DeveloperSearchParameterParserTest extends AbstractServiceTest
     {
         $developProfileParameter = $this->parse([]);
 
-        $emptyBitSetPattern = str_repeat('*', SDeveloperProfileSearchParameter::SKILL_BIT_SET_SIZE);
+        $emptyBitSetPattern = $this->container->get('rqs.developer_profile')->getEmptySkillBitSet('*');
 
         $this->assertSame($developProfileParameter->getSkillBitSetPattern(), $emptyBitSetPattern);
     }

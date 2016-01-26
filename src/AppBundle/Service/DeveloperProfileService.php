@@ -60,9 +60,9 @@ class DeveloperProfileService
         return $profile;
     }
 
-    public function getEmptySkillBitSet()
+    public function getEmptySkillBitSet($char = '0')
     {
-        return str_repeat('0', SDeveloperProfileSearchParameter::SKILL_BIT_SET_SIZE);
+        return str_repeat($char, SDeveloperProfileSearchParameter::SKILL_BIT_SET_SIZE);
     }
 
     private function getSkillCollection(array $skills)
