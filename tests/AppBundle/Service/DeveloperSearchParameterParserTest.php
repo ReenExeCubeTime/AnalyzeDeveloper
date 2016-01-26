@@ -20,21 +20,28 @@ class DeveloperSearchParameterParserTest extends AbstractServiceTest
      */
     public function testSkillBitSetPattern()
     {
-        $developProfileParameter = $this->parse([]);
+        foreach ($this->skillBitSetDataProvider() as list($parameters, $expectBtSetPattern)) {
+            $developProfileParameter = $this->parse($parameters);
 
-        $bitSetPattern = $this->container->get('rqs.developer.profile.search.parameter')->getSkillBitSet('*');
+            $this->assertSame($developProfileParameter->getSkillBitSetPattern(), $expectBtSetPattern);
+        }
+    }
 
-        $this->assertSame($developProfileParameter->getSkillBitSetPattern(), $bitSetPattern);
+    public function skillBitSetDataProvider()
+    {
+        $service = $this->container->get('rqs.developer.profile.search.parameter');
 
-        $developProfileParameter = $this->parse([
-            DeveloperSearchParameterParser::SKILL => 'PHP'
-        ]);
+        yield [
+            [],
+            $service->getSkillBitSet('*')
+        ];
 
-        $bitSetPattern = $this->container->get('rqs.developer.profile.search.parameter')->getSkillBitSet('*');
-
-        $bitSetPattern[1] = '1';
-
-        $this->assertSame($developProfileParameter->getSkillBitSetPattern(), $bitSetPattern);
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP'
+            ],
+            $service->getSkillBitSet('*', [1])
+        ];
     }
 
     private function createParameterList()

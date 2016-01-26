@@ -18,8 +18,6 @@ abstract class AbstractServiceTest extends KernelTestCase
         static::bootKernel();
 
         $this->container =  static::$kernel->getContainer();
-
-        $this->service = static::$kernel->getContainer();
     }
 
     /**
