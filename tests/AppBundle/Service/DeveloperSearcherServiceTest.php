@@ -39,9 +39,37 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
 
         yield [
             [
+                DeveloperSearchParameterParser::SKILL => ''
+            ],
+            [1, 2, 3]
+        ];
+
+        yield [
+            [
                 DeveloperSearchParameterParser::SKILL => 'PHP,Redis,SQL,JavaScript,TDD'
             ],
             [1]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP'
+            ],
+            [1, 2, 3]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP,JavaScript'
+            ],
+            [1, 2]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP,SQL'
+            ],
+            [1, 3]
         ];
     }
 
@@ -76,14 +104,14 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
                 'Middle Developer',
                 2500,
                 'Some',
-                [],
+                ['PHP', 'JavaScript'],
             ],
 
             [
                 'Junior Developer',
                 1000,
                 'Some',
-                [],
+                ['PHP', 'SQL'],
             ],
         ];
 
