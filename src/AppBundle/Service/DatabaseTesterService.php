@@ -32,7 +32,8 @@ class DatabaseTesterService
         $this->truncate(
             'SSkill',
             'SDeveloperProfile',
-            'SDeveloperProfileToSkill'
+            'SDeveloperProfileToSkill',
+            'SDeveloperProfileSearchParameter'
         );
     }
 }

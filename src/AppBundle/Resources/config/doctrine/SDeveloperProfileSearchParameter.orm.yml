@@ -8,7 +8,7 @@ AppBundle\Entity\SDeveloperProfileSearchParameter:
             targetEntity: AppBundle\Entity\SDeveloperProfile
             inversedBy: searchParameter
             joinColumn:
-                name: developer
+                name: developer_id
                 referencedColumnName: id
             fetch: EXTRA_LAZY
 

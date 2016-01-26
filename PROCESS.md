@@ -31,3 +31,5 @@ composer require --dev behat/behat
 ```bash
 bin/console doctrine:generate:entities AppBundle
 ```
+
+[PHPUnit `dataProvider` call before `setUp`] (https://github.com/sebastianbergmann/phpunit/issues/836)

@@ -26,8 +26,11 @@ class SDeveloperProfileRepository extends \Doctrine\ORM\EntityRepository
 
     private function useSearchParameter(QueryBuilder $queryBuilder, DevelopProfileParameter $developProfileParameter)
     {
-        if ($developProfileParameter->getSkillBitSetPattern()) {
-            // TODO...
+        if ($skillBitSetPattern = $developProfileParameter->getSkillBitSetPattern()) {
+            $queryBuilder
+                ->join('dp.searchParameter', 'sp')
+                ->andWhere('sp.skillBitSet LIKE :skillBitSetPattern')
+                ->setParameter('skillBitSetPattern', $skillBitSetPattern);
         }
     }
 }

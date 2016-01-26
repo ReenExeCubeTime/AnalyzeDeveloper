@@ -2,6 +2,7 @@
 
 namespace Tests\AppBundle\Service;
 
+use AppBundle\Service\DeveloperSearchParameterParser;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class DeveloperSearcherServiceTest extends AbstractServiceTest
@@ -21,14 +22,12 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
      */
     public function test(array $parameters, array $expectDeveloperProfileIdList)
     {
-        $developerProfileCollection = $this->getService()->search(new ParameterBag($parameters));
+        $developerProfileCollection = $this->search($parameters);
 
-        $developerProfileIdList = [];
-        foreach ($developerProfileCollection as $developerProfile) {
-            $developerProfileIdList[] = $developerProfile->getId();
-        }
-
-        $this->assertSame($developerProfileIdList, $expectDeveloperProfileIdList);
+        $this->assertSame(
+            $this->getDeveloperProfileIdList($developerProfileCollection),
+            $expectDeveloperProfileIdList
+        );
     }
 
     public function dataProvider()
@@ -36,6 +35,41 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
         yield [
             [],
             [1, 2, 3]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => ''
+            ],
+            [1, 2, 3]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP,Redis,SQL,JavaScript,TDD'
+            ],
+            [1]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP'
+            ],
+            [1, 2, 3]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP,JavaScript'
+            ],
+            [1, 2]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP,SQL'
+            ],
+            [1, 3]
         ];
     }
 
@@ -63,26 +97,26 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
                 'Senior Developer',
                 5000,
                 'All',
-                [],
+                $allSkills,
             ],
 
             [
                 'Middle Developer',
                 2500,
                 'Some',
-                [],
+                ['PHP', 'JavaScript'],
             ],
 
             [
                 'Junior Developer',
                 1000,
                 'Some',
-                [],
+                ['PHP', 'SQL'],
             ],
         ];
 
         foreach ($developerProfileDataList as list($title, $salary, $description, $skills)) {
-            $this->container->get('rqs.developer_profile')->create(
+            $this->container->get('rqs.developer.profile')->create(
                 $this->getTestUser(),
                 $title,
                 $salary,
@@ -90,5 +124,27 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
                 $skills
             );
         }
+    }
+
+    /**
+     * @param array $parameters
+     * @return \AppBundle\Entity\SDeveloperProfile[]|array
+     */
+    private function search(array $parameters)
+    {
+        return $this->getService()->search(new ParameterBag($parameters));
+    }
+
+    /**
+     * @param \AppBundle\Entity\SDeveloperProfile[]|array $developerProfileCollection
+     * @return array
+     */
+    private function getDeveloperProfileIdList(array $developerProfileCollection)
+    {
+        $developerProfileIdList = [];
+        foreach ($developerProfileCollection as $developerProfile) {
+            $developerProfileIdList[] = $developerProfile->getId();
+        }
+        return $developerProfileIdList;
     }
 }
