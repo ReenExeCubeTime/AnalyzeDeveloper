@@ -10,6 +10,8 @@ class DeveloperController extends Controller
 {
     public function listAction(Request $request)
     {
-        return new JsonResponse([]);
+        $developerProfileCollection = $this->get('rqs.developer.searcher')->search($request->query);
+
+        return new JsonResponse($developerProfileCollection);
     }
 }
