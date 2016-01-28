@@ -5,7 +5,7 @@ namespace AppBundle\Service;
 use AppBundle\Searcher\DevelopProfileParameter;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
-class DeveloperSearchParameterParser implements ParameterParser
+class DeveloperSearchParameterParser implements ParameterParserInterface
 {
     const SKILL = 's';
 

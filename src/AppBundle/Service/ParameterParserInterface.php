@@ -4,7 +4,7 @@ namespace AppBundle\Service;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
 
-interface ParameterParser
+interface ParameterParserInterface
 {
     public function parse(ParameterBag $parameters);
 }
