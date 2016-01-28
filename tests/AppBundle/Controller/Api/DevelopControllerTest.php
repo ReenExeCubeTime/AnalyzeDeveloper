@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\AppBundle\Controller;
+namespace Tests\AppBundle\Controller\Api;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ApiDevelopControllerTest extends WebTestCase
+class DevelopControllerTest extends WebTestCase
 {
     public function testEmpty()
     {
