@@ -6,6 +6,7 @@ use AppBundle\Entity\SDeveloperProfile;
 use AppBundle\Entity\SDeveloperProfileSearchParameter;
 use AppBundle\Entity\SDeveloperProfileToSkill;
 use AppBundle\Entity\SUser;
+use AppBundle\Service\DevelopProfile\SearchParameterService;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
 class DeveloperProfileService
@@ -14,7 +15,7 @@ class DeveloperProfileService
 
     private $searchParameter;
 
-    public function __construct(Registry $doctrine, DevelopProfileSearchParameterService $searchParameter)
+    public function __construct(Registry $doctrine, SearchParameterService $searchParameter)
     {
         $this->doctrine = $doctrine;
 

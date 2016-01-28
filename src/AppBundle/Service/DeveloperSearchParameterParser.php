@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Searcher\DevelopProfileParameter;
+use AppBundle\Service\DevelopProfile\SearchParameterService;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class DeveloperSearchParameterParser implements ParameterParserInterface
@@ -15,11 +16,11 @@ class DeveloperSearchParameterParser implements ParameterParserInterface
     private $skillService;
 
     /**
-     * @var DevelopProfileSearchParameterService
+     * @var SearchParameterService
      */
     private $searchParameter;
 
-    public function __construct(SkillService $skillService, DevelopProfileSearchParameterService $searchParameter)
+    public function __construct(SkillService $skillService, SearchParameterService $searchParameter)
     {
         $this->skillService = $skillService;
 

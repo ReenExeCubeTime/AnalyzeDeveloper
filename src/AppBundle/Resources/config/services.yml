@@ -5,7 +5,7 @@ services:
             - '@doctrine'
 
     rqs.developer.profile.search.parameter:
-        class: AppBundle\Service\DevelopProfileSearchParameterService
+        class: AppBundle\Service\DevelopProfile\SearchParameterService
 
     rqs.developer.profile:
         class: AppBundle\Service\DeveloperProfileService
@@ -21,6 +21,8 @@ services:
 
     rqs.developer.profile.parameter.doctrine.criteria.provider:
         class: AppBundle\Service\DevelopProfile\Doctrine\CriteriaProvider
+        arguments:
+            - '@doctrine'
 
     rqs.developer.profile.parameter:
         class: AppBundle\Service\DeveloperSearchParameterService

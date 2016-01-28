@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Service;
+namespace AppBundle\Service\DevelopProfile;
 
 use AppBundle\Entity\SDeveloperProfileSearchParameter;
 
-class DevelopProfileSearchParameterService
+class SearchParameterService
 {
     public function getSkillBitSet($char = '0', array $skillIdList = [])
     {
