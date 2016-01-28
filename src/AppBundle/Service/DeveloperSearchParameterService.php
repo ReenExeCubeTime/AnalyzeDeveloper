@@ -2,26 +2,24 @@
 
 namespace AppBundle\Service;
 
-use Doctrine\Bundle\DoctrineBundle\Registry;
+use AppBundle\Service\DevelopProfile\CriteriaProviderInterface;
 
 class DeveloperSearchParameterService
 {
-    private $doctrine;
+    /**
+     * @var CriteriaProviderInterface
+     */
+    private $criteriaProvider;
 
-    public function __construct(Registry $doctrine)
+    public function __construct($criteriaProvider)
     {
-        $this->doctrine = $doctrine;
+        $this->criteriaProvider = $criteriaProvider;
     }
 
     public function getFilter()
     {
         return [
-            DeveloperSearchParameterParser::SKILL => $this->getSkillList()
+            DeveloperSearchParameterParser::SKILL => $this->criteriaProvider->getSkillList()
         ];
-    }
-
-    private function getSkillList()
-    {
-        return $this->doctrine->getRepository('AppBundle:SSkill')->getNameList();
     }
 }
