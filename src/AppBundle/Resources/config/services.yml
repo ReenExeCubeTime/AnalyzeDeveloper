@@ -19,6 +19,9 @@ services:
             - '@rqs.skill'
             - '@rqs.developer.profile.search.parameter'
 
+    rqs.developer.profile.parameter:
+        class: AppBundle\Service\DeveloperSearchParameterService
+
     rqs.developer.searcher:
         class: AppBundle\Service\DeveloperSearcherService
         arguments:

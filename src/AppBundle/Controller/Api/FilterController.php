@@ -9,6 +9,8 @@ class FilterController extends Controller
 {
     public function listAction()
     {
-        return new JsonResponse([]);
+        return new JsonResponse(
+            $this->get('rqs.developer.profile.parameter')->getFilter()
+        );
     }
 }
