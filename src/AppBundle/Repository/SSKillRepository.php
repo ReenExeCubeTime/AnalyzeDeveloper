@@ -45,4 +45,14 @@ class SSKillRepository extends \Doctrine\ORM\EntityRepository
 
         return array_column($source, 'id');
     }
+
+    public function getNameList()
+    {
+        $source = $this->createQueryBuilder('s')
+            ->select('s.name')
+            ->getQuery()
+            ->getArrayResult();
+
+        return array_column($source, 'name');
+    }
 }

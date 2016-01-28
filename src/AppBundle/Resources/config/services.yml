@@ -21,6 +21,8 @@ services:
 
     rqs.developer.profile.parameter:
         class: AppBundle\Service\DeveloperSearchParameterService
+        arguments:
+            - '@doctrine'
 
     rqs.developer.searcher:
         class: AppBundle\Service\DeveloperSearcherService
