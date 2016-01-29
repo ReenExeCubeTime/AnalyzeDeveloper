@@ -16,8 +16,6 @@ class ApiFilterControllerTest extends WebTestCase
         $client->request('GET', '/api/filters.json');
 
         $this->assertEquals($client->getResponse()->getStatusCode(), 200);
-        $this->assertEquals(json_decode($client->getResponse()->getContent(), true), [
-            's' => []
-        ]);
+        $this->assertEquals(json_decode($client->getResponse()->getContent(), true), []);
     }
 }
