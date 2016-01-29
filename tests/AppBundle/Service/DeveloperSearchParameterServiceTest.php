@@ -32,7 +32,8 @@ class DeveloperSearchParameterServiceTest extends AbstractServiceTest
             [
                 DeveloperSearchParameterParser::SKILL_NAME => [
                     'param' => DeveloperSearchParameterParser::SKILL,
-                    'list' => $allSkills
+                    'name' => DeveloperSearchParameterParser::SKILL_NAME,
+                    'list' => $allSkills,
                 ]
             ]
         );

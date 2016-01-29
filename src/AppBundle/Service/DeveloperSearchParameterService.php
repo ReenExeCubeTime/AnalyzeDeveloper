@@ -18,8 +18,16 @@ class DeveloperSearchParameterService
 
     public function getFilter()
     {
-        return [
-            DeveloperSearchParameterParser::SKILL => $this->criteriaProvider->getSkillList()
-        ];
+        $result = [];
+
+        if ($skills = $this->criteriaProvider->getSkillList()) {
+            $result[DeveloperSearchParameterParser::SKILL_NAME] = [
+                'param' => DeveloperSearchParameterParser::SKILL,
+                'name' => DeveloperSearchParameterParser::SKILL_NAME,
+                'list' => $skills,
+            ];
+        }
+
+        return $result;
     }
 }
