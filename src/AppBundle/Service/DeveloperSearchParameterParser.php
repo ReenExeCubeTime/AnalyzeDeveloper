@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 class DeveloperSearchParameterParser implements ParameterParserInterface
 {
     const SKILL = 's';
+    const SKILL_NAME = 'skills';
 
     /**
      * @var SkillService

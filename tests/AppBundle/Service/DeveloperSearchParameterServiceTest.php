@@ -10,12 +10,7 @@ class DeveloperSearchParameterServiceTest extends AbstractServiceTest
     {
         $this->container->get('rqs.database.tester')->clear();
 
-        $this->assertSame(
-            $this->getService()->getFilter(),
-            [
-                DeveloperSearchParameterParser::SKILL => []
-            ]
-        );
+        $this->assertSame($this->getService()->getFilter(), []);
     }
 
     public function testFill()
@@ -35,7 +30,10 @@ class DeveloperSearchParameterServiceTest extends AbstractServiceTest
         $this->assertSame(
             $this->getService()->getFilter(),
             [
-                DeveloperSearchParameterParser::SKILL => $allSkills
+                DeveloperSearchParameterParser::SKILL_NAME => [
+                    'param' => DeveloperSearchParameterParser::SKILL,
+                    'list' => $allSkills
+                ]
             ]
         );
     }
