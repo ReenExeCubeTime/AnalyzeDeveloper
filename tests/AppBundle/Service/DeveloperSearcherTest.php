@@ -5,7 +5,7 @@ namespace Tests\AppBundle\Service;
 use AppBundle\Service\DeveloperSearchParameterParser;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
-class DeveloperSearcherServiceTest extends AbstractServiceTest
+class DeveloperSearcherTest extends AbstractServiceTest
 {
     protected function setUp()
     {
@@ -73,22 +73,35 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
         ];
     }
 
+    public function testFilter()
+    {
+        $this->assertSame(
+            $this->getCriteriaService()->getFilter(),
+            [
+                DeveloperSearchParameterParser::SKILL_NAME => [
+                    'param' => DeveloperSearchParameterParser::SKILL,
+                    'name' => DeveloperSearchParameterParser::SKILL_NAME,
+                    'list' => $this->getSkillList(),
+                ]
+            ]
+        );
+    }
+
     private function getService()
     {
         return $this->container->get('rqs.developer.searcher');
+    }
+
+    private function getCriteriaService()
+    {
+        return $this->container->get('rqs.developer.profile.parameter');
     }
 
     private function createDeveloperList()
     {
         $this->container->get('rqs.database.tester')->clear();
 
-        $allSkills = [
-            'PHP',
-            'Redis',
-            'SQL',
-            'JavaScript',
-            'TDD',
-        ];
+        $allSkills = $this->getSkillList();
 
         $this->container->get('rqs.skill')->create(...$allSkills);
 
@@ -133,6 +146,17 @@ class DeveloperSearcherServiceTest extends AbstractServiceTest
     private function search(array $parameters)
     {
         return $this->getService()->search(new ParameterBag($parameters));
+    }
+
+    private function getSkillList()
+    {
+        return [
+            'PHP',
+            'Redis',
+            'SQL',
+            'JavaScript',
+            'TDD',
+        ];
     }
 
     /**
