@@ -16,6 +16,13 @@ class CriteriaProvider implements CriteriaProviderInterface
 
     public function getSkillList()
     {
-        return $this->doctrine->getRepository('AppBundle:SSkill')->getNameList();
+        $existSkillIdList = $this
+            ->doctrine
+            ->getRepository('AppBundle:SDeveloperProfileToSkill')
+            ->getAllSkillIdList();
+
+        return $existSkillIdList
+            ? $this->doctrine->getRepository('AppBundle:SSkill')->getNameList($existSkillIdList)
+            : [];
     }
 }

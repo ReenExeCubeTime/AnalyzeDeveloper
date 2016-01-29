@@ -27,6 +27,25 @@ class DeveloperSearchParameterServiceTest extends AbstractServiceTest
 
         $this->container->get('rqs.skill')->create(...$allSkills);
 
+        $developerProfileDataList = [
+            [
+                'Senior Developer',
+                5000,
+                'All',
+                $allSkills,
+            ],
+        ];
+
+        foreach ($developerProfileDataList as list($title, $salary, $description, $skills)) {
+            $this->container->get('rqs.developer.profile')->create(
+                $this->getTestUser(),
+                $title,
+                $salary,
+                $description,
+                $skills
+            );
+        }
+
         $this->assertSame(
             $this->getService()->getFilter(),
             [

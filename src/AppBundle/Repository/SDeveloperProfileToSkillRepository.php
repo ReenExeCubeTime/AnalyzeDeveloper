@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class SDeveloperProfileToSkillRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllSkillIdList()
+    {
+        $source = $this
+            ->createQueryBuilder('dp2s')
+            ->distinct(true)
+            ->select('dp2s.skillId')
+            ->getQuery()
+            ->getResult();
+
+        return array_column($source, 'skillId');
+    }
 }

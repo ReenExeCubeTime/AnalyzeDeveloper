@@ -138,5 +138,33 @@ class SDeveloperProfileToSkill
     {
         return $this->skill;
     }
-}
+    /**
+     * @var integer
+     */
+    private $skillId;
 
+
+    /**
+     * Set skillId
+     *
+     * @param integer $skillId
+     *
+     * @return SDeveloperProfileToSkill
+     */
+    public function setSkillId($skillId)
+    {
+        $this->skillId = $skillId;
+
+        return $this;
+    }
+
+    /**
+     * Get skillId
+     *
+     * @return integer
+     */
+    public function getSkillId()
+    {
+        return $this->skillId;
+    }
+}

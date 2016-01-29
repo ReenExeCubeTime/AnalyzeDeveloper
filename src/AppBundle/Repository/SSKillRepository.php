@@ -46,10 +46,12 @@ class SSKillRepository extends \Doctrine\ORM\EntityRepository
         return array_column($source, 'id');
     }
 
-    public function getNameList()
+    public function getNameList(array $idList)
     {
         $source = $this->createQueryBuilder('s')
             ->select('s.name')
+            ->where('s.id IN (:idList)')
+            ->setParameter('idList', $idList)
             ->getQuery()
             ->getArrayResult();
 

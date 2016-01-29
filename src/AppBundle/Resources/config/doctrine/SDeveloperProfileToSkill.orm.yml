@@ -32,3 +32,6 @@ AppBundle\Entity\SDeveloperProfileToSkill:
             type: integer
         score:
             type: integer
+        skillId:
+            type: integer
+            column: skill_id
