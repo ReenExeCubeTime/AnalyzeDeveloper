@@ -4,6 +4,11 @@ services:
         arguments:
             - '@doctrine'
 
+    rqs.city:
+        class: AppBundle\Service\CityService
+        arguments:
+            - '@doctrine'
+
     rqs.developer.profile.search.parameter:
         class: AppBundle\Service\DevelopProfile\SearchParameterService
 
