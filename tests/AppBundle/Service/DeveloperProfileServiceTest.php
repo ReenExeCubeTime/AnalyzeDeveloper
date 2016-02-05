@@ -39,6 +39,7 @@ class DeveloperProfileServiceTest extends AbstractServiceTest
         $skillCount = count($skills);
 
         $this->assertSame($developerProfile->getUser(), $this->getTestUser());
+        $this->assertSame($developerProfile->getCity(), $this->getCity());
         $this->assertSame($developerProfile->getTitle(), $title);
         $this->assertSame($developerProfile->getSalary(), $salary);
         $this->assertSame($developerProfile->getDescription(), $description);

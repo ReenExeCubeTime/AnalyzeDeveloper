@@ -29,6 +29,7 @@ class DeveloperProfileService
 
         $profile
             ->setUser($user)
+            ->setCity($city)
             ->setTitle($title)
             ->setSalary($salary)
             ->setDescription($description);

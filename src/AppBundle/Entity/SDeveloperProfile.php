@@ -213,4 +213,33 @@ class SDeveloperProfile
     {
         return $this->user;
     }
+    /**
+     * @var \AppBundle\Entity\SCity
+     */
+    private $city;
+
+
+    /**
+     * Set city
+     *
+     * @param \AppBundle\Entity\SCity $city
+     *
+     * @return SDeveloperProfile
+     */
+    public function setCity(\AppBundle\Entity\SCity $city = null)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \AppBundle\Entity\SCity
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
 }

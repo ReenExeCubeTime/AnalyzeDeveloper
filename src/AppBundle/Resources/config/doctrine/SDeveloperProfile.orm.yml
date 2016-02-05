@@ -12,6 +12,13 @@ AppBundle\Entity\SDeveloperProfile:
                 referencedColumnName: id
             fetch: EXTRA_LAZY
 
+        city:
+            targetEntity: AppBundle\Entity\SCity
+            joinColumn:
+                name: city_id
+                referencedColumnName: id
+            fetch: EXTRA_LAZY
+
     oneToMany:
         skills:
             targetEntity: AppBundle\Entity\SDeveloperProfileToSkill
