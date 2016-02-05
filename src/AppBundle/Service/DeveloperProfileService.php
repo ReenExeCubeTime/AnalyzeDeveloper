@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\SCity;
 use AppBundle\Entity\SDeveloperProfile;
 use AppBundle\Entity\SDeveloperProfileSearchParameter;
 use AppBundle\Entity\SDeveloperProfileToSkill;
@@ -22,7 +23,7 @@ class DeveloperProfileService
         $this->searchParameter = $searchParameter;
     }
 
-    public function create(SUser $user, $title, $salary, $description, array $skills = [])
+    public function create(SUser $user, $title, $salary, $description, SCity $city, array $skills = [])
     {
         $profile = new SDeveloperProfile();
 

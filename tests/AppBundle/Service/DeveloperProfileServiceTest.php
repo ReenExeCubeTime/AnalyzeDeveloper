@@ -32,6 +32,7 @@ class DeveloperProfileServiceTest extends AbstractServiceTest
             $title,
             $salary,
             $description,
+            $this->getCity(),
             $skills
         );
 
