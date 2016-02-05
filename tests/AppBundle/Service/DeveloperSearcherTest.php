@@ -134,6 +134,7 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 $title,
                 $salary,
                 $description,
+                $this->getCity(),
                 $skills
             );
         }
