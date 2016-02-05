@@ -31,6 +31,7 @@ class DatabaseTesterService
     {
         $this->truncate(
             'SSkill',
+            'SCity',
             'SDeveloperProfile',
             'SDeveloperProfileToSkill',
             'SDeveloperProfileSearchParameter'

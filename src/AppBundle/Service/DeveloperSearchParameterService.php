@@ -28,6 +28,14 @@ class DeveloperSearchParameterService
             ];
         }
 
+        if ($cities = $this->criteriaProvider->getCityList()) {
+            $result[DeveloperSearchParameterParser::CITY_NAME] = [
+                'param' => DeveloperSearchParameterParser::CITY,
+                'name' => DeveloperSearchParameterParser::CITY_NAME,
+                'list' => $cities,
+            ];
+        }
+
         return $result;
     }
 }

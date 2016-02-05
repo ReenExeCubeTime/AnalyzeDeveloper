@@ -82,6 +82,12 @@ class DeveloperSearcherTest extends AbstractServiceTest
                     'param' => DeveloperSearchParameterParser::SKILL,
                     'name' => DeveloperSearchParameterParser::SKILL_NAME,
                     'list' => $this->getSkillList(),
+                ],
+
+                DeveloperSearchParameterParser::CITY_NAME => [
+                    'param' => DeveloperSearchParameterParser::CITY,
+                    'name' => DeveloperSearchParameterParser::CITY_NAME,
+                    'list' => $this->getCityList(),
                 ]
             ]
         );
@@ -104,6 +110,7 @@ class DeveloperSearcherTest extends AbstractServiceTest
         $allSkills = $this->getSkillList();
 
         $this->container->get('rqs.skill')->create(...$allSkills);
+        $this->container->get('rqs.city')->create(...$this->getCityList());
 
         $developerProfileDataList = [
             [
@@ -157,6 +164,13 @@ class DeveloperSearcherTest extends AbstractServiceTest
             'SQL',
             'JavaScript',
             'TDD',
+        ];
+    }
+
+    private function getCityList()
+    {
+        return [
+            'Київ'
         ];
     }
 

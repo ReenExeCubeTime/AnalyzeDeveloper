@@ -11,6 +11,9 @@ class DeveloperSearchParameterParser implements ParameterParserInterface
     const SKILL = 's';
     const SKILL_NAME = 'skills';
 
+    const CITY = 'c';
+    const CITY_NAME = 'cities';
+
     /**
      * @var SkillService
      */

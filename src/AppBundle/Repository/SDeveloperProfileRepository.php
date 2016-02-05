@@ -24,6 +24,9 @@ class SDeveloperProfileRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    /**
+     * @return array
+     */
     private function useSearchParameter(QueryBuilder $queryBuilder, DevelopProfileParameter $developProfileParameter)
     {
         if ($skillBitSetPattern = $developProfileParameter->getSkillBitSetPattern()) {
@@ -32,5 +35,20 @@ class SDeveloperProfileRepository extends \Doctrine\ORM\EntityRepository
                 ->andWhere('sp.skillBitSet LIKE :skillBitSetPattern')
                 ->setParameter('skillBitSetPattern', $skillBitSetPattern);
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllCityIdList()
+    {
+        $source = $this
+            ->createQueryBuilder('dp')
+            ->distinct(true)
+            ->select('dp.cityId')
+            ->getQuery()
+            ->getResult();
+
+        return array_column($source, 'cityId');
     }
 }
