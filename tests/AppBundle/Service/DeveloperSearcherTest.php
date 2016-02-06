@@ -46,6 +46,14 @@ class DeveloperSearcherTest extends AbstractServiceTest
 
         yield [
             [
+                DeveloperSearchParameterParser::SKILL => '',
+                DeveloperSearchParameterParser::CITY => '',
+            ],
+            [1, 2, 3]
+        ];
+
+        yield [
+            [
                 DeveloperSearchParameterParser::SKILL => 'PHP,Redis,SQL,JavaScript,TDD'
             ],
             [1]
@@ -56,6 +64,14 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 DeveloperSearchParameterParser::SKILL => 'PHP'
             ],
             [1, 2, 3]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP',
+                DeveloperSearchParameterParser::CITY => '1',
+            ],
+            [3]
         ];
 
         yield [
