@@ -33,16 +33,6 @@ class SkillService implements ExistIdListInterface
         return $this->doctrine->getRepository('AppBundle:SSkill')->findAllLike($value);
     }
 
-    /**
-     * @deprecated
-     * @param array $names
-     * @return array
-     */
-    public function getIdList(array $names)
-    {
-        return $this->doctrine->getRepository('AppBundle:SSkill')->getIdList($names);
-    }
-
     public function exists($name)
     {
         return $this->doctrine->getRepository('AppBundle:SSkill')->exists($name);
