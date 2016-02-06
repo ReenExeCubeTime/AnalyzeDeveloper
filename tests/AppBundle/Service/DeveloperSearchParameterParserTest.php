@@ -17,13 +17,15 @@ class DeveloperSearchParameterParserTest extends AbstractServiceTest
     /**
      * @covers \AppBundle\Service\DeveloperSearchParameterParser::parse
      * @covers \AppBundle\Searcher\DevelopProfileParameter::getSkillBitSetPattern
+     * @covers \AppBundle\Searcher\DevelopProfileParameter::getCityIdList
      */
     public function testSkillBitSetPattern()
     {
-        foreach ($this->skillBitSetDataProvider() as list($parameters, $expectBtSetPattern)) {
-            $developProfileParameter = $this->parse($parameters);
+        foreach ($this->skillBitSetDataProvider() as list($parameters, list($bitSetPattern, $cityIdList))) {
+            $parameter = $this->parse($parameters);
 
-            $this->assertSame($developProfileParameter->getSkillBitSetPattern(), $expectBtSetPattern);
+            $this->assertSame($parameter->getSkillBitSetPattern(), $bitSetPattern);
+            $this->assertSame($parameter->getCityIdList(), $cityIdList);
         }
     }
 
@@ -33,21 +35,41 @@ class DeveloperSearchParameterParserTest extends AbstractServiceTest
 
         yield [
             [],
-            false
+            [
+                false,
+                [],
+            ]
         ];
 
         yield [
             [
-                DeveloperSearchParameterParser::SKILL => 'PHP'
+                DeveloperSearchParameterParser::SKILL => '1'
             ],
-            $service->getSkillBitSet('_', [1])
+            [
+                $service->getSkillBitSet('_', [1]),
+                [],
+            ]
         ];
 
         yield [
             [
-                DeveloperSearchParameterParser::SKILL => 'PHP,TDD'
+                DeveloperSearchParameterParser::CITY => '1',
             ],
-            $service->getSkillBitSet('_', [1, 5])
+            [
+                false,
+                [1],
+            ]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => '1,5',
+                DeveloperSearchParameterParser::CITY => '1',
+            ],
+            [
+                $service->getSkillBitSet('_', [1, 5]),
+                [1],
+            ]
         ];
     }
 
@@ -55,15 +77,11 @@ class DeveloperSearchParameterParserTest extends AbstractServiceTest
     {
         $this->container->get('rqs.database.tester')->clear();
 
-        $allSkills = [
-            'PHP',
-            'Redis',
-            'SQL',
-            'JavaScript',
-            'TDD',
-        ];
+        $skills = $this->getSkillList();
+        $this->container->get('rqs.skill')->create(...$skills);
 
-        $this->container->get('rqs.skill')->create(...$allSkills);
+        $cities = $this->getCityList();
+        $this->container->get('rqs.city')->create(...$cities);
     }
 
     /**

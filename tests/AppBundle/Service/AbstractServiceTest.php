@@ -40,4 +40,23 @@ abstract class AbstractServiceTest extends KernelTestCase
 
         return $manager->getReference('AppBundle:SCity', $id);
     }
+
+    protected function getSkillList()
+    {
+        return [
+            'PHP',
+            'Redis',
+            'SQL',
+            'JavaScript',
+            'TDD',
+        ];
+    }
+
+    protected function getCityList()
+    {
+        return [
+            'Київ',
+            'Львів',
+        ];
+    }
 }

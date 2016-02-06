@@ -35,6 +35,12 @@ class SDeveloperProfileRepository extends \Doctrine\ORM\EntityRepository
                 ->andWhere('sp.skillBitSet LIKE :skillBitSetPattern')
                 ->setParameter('skillBitSetPattern', $skillBitSetPattern);
         }
+
+        if ($cityIdList = $developProfileParameter->getCityIdList()) {
+            $queryBuilder
+                ->andWhere('dp.cityId IN (:cityIdList)')
+                ->setParameter('cityIdList', $cityIdList);
+        }
     }
 
     /**

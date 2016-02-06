@@ -54,14 +54,22 @@ class DeveloperSearcherTest extends AbstractServiceTest
 
         yield [
             [
-                DeveloperSearchParameterParser::SKILL => 'PHP,Redis,SQL,JavaScript,TDD'
+                DeveloperSearchParameterParser::SKILL => '1,2,3,4,5'
             ],
             [1]
         ];
 
         yield [
             [
-                DeveloperSearchParameterParser::SKILL => 'PHP'
+                DeveloperSearchParameterParser::SKILL => '1'
+            ],
+            [1, 2, 3]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => '1',
+                DeveloperSearchParameterParser::CITY => '1,2',
             ],
             [1, 2, 3]
         ];
@@ -76,14 +84,14 @@ class DeveloperSearcherTest extends AbstractServiceTest
 
         yield [
             [
-                DeveloperSearchParameterParser::SKILL => 'PHP,JavaScript'
+                DeveloperSearchParameterParser::SKILL => '1,4'
             ],
             [1, 2]
         ];
 
         yield [
             [
-                DeveloperSearchParameterParser::SKILL => 'PHP,SQL'
+                DeveloperSearchParameterParser::SKILL => '1,3'
             ],
             [1, 3]
         ];
@@ -124,9 +132,10 @@ class DeveloperSearcherTest extends AbstractServiceTest
         $this->container->get('rqs.database.tester')->clear();
 
         $allSkills = $this->getSkillList();
-
         $this->container->get('rqs.skill')->create(...$allSkills);
-        $this->container->get('rqs.city')->create(...$this->getCityList());
+
+        $allCities = $this->getCityList();
+        $this->container->get('rqs.city')->create(...$allCities);
 
         $developerProfileDataList = [
             [
@@ -173,25 +182,6 @@ class DeveloperSearcherTest extends AbstractServiceTest
     private function search(array $parameters)
     {
         return $this->getService()->search(new ParameterBag($parameters));
-    }
-
-    private function getSkillList()
-    {
-        return [
-            'PHP',
-            'Redis',
-            'SQL',
-            'JavaScript',
-            'TDD',
-        ];
-    }
-
-    private function getCityList()
-    {
-        return [
-            'Київ',
-            'Львів',
-        ];
     }
 
     /**
