@@ -30,13 +30,14 @@ abstract class AbstractServiceTest extends KernelTestCase
     }
 
     /**
+     * @param int $id
      * @return SCity
      */
-    protected function getCity()
+    protected function getCity($id = 1)
     {
         /* @var $manager \Doctrine\ORM\EntityManager */
         $manager = $this->container->get('doctrine')->getManager();
 
-        return $manager->getReference('AppBundle:SCity', 1);
+        return $manager->getReference('AppBundle:SCity', $id);
     }
 }

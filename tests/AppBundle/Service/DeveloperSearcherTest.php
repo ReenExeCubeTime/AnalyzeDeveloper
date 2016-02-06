@@ -118,6 +118,7 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 5000,
                 'All',
                 $allSkills,
+                2,
             ],
 
             [
@@ -125,6 +126,7 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 2500,
                 'Some',
                 ['PHP', 'JavaScript'],
+                2,
             ],
 
             [
@@ -132,16 +134,17 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 1000,
                 'Some',
                 ['PHP', 'SQL'],
+                1,
             ],
         ];
 
-        foreach ($developerProfileDataList as list($title, $salary, $description, $skills)) {
+        foreach ($developerProfileDataList as list($title, $salary, $description, $skills, $cityId)) {
             $this->container->get('rqs.developer.profile')->create(
                 $this->getTestUser(),
                 $title,
                 $salary,
                 $description,
-                $this->getCity(),
+                $this->getCity($cityId),
                 $skills
             );
         }
@@ -170,7 +173,8 @@ class DeveloperSearcherTest extends AbstractServiceTest
     private function getCityList()
     {
         return [
-            'Київ'
+            'Київ',
+            'Львів',
         ];
     }
 
