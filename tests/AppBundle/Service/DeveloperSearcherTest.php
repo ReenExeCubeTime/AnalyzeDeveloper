@@ -105,13 +105,13 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 DeveloperSearchParameterParser::SKILL_NAME => [
                     'param' => DeveloperSearchParameterParser::SKILL,
                     'name' => DeveloperSearchParameterParser::SKILL_NAME,
-                    'list' => $this->getSkillList(),
+                    'list' => $this->combine($this->getSkillList()),
                 ],
 
                 DeveloperSearchParameterParser::CITY_NAME => [
                     'param' => DeveloperSearchParameterParser::CITY,
                     'name' => DeveloperSearchParameterParser::CITY_NAME,
-                    'list' => $this->getCityList(),
+                    'list' => $this->combine($this->getCityList()),
                 ]
             ]
         );
@@ -195,5 +195,19 @@ class DeveloperSearcherTest extends AbstractServiceTest
             $developerProfileIdList[] = $developerProfile->getId();
         }
         return $developerProfileIdList;
+    }
+
+    private function combine(array $names)
+    {
+        $id = 1;
+        $result = [];
+        foreach ($names as $name) {
+            $result[] = [
+                'id' => $id++,
+                'name' => $name,
+            ];
+        }
+
+        return $result;
     }
 }
