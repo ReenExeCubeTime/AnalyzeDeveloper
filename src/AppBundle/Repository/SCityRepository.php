@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class SCityRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getNameList($idList)
+    {
+        $source = $this->createQueryBuilder('c')
+            ->select('c.name')
+            ->where('c.id IN (:idList)')
+            ->setParameter('idList', $idList)
+            ->getQuery()
+            ->getArrayResult();
+
+        return array_column($source, 'name');
+    }
 }

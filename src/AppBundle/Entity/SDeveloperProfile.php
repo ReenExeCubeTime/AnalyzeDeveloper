@@ -242,4 +242,33 @@ class SDeveloperProfile
     {
         return $this->city;
     }
+    /**
+     * @var integer
+     */
+    private $cityId;
+
+
+    /**
+     * Set cityId
+     *
+     * @param integer $cityId
+     *
+     * @return SDeveloperProfile
+     */
+    public function setCityId($cityId)
+    {
+        $this->cityId = $cityId;
+
+        return $this;
+    }
+
+    /**
+     * Get cityId
+     *
+     * @return integer
+     */
+    public function getCityId()
+    {
+        return $this->cityId;
+    }
 }

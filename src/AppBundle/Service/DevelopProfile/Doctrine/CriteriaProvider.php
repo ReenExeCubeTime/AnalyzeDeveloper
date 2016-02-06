@@ -25,4 +25,16 @@ class CriteriaProvider implements CriteriaProviderInterface
             ? $this->doctrine->getRepository('AppBundle:SSkill')->getNameList($existSkillIdList)
             : [];
     }
+
+    public function getCityList()
+    {
+        $existCityIdList = $this
+            ->doctrine
+            ->getRepository('AppBundle:SDeveloperProfile')
+            ->getAllCityIdList();
+
+        return $existCityIdList
+            ? $this->doctrine->getRepository('AppBundle:SCity')->getNameList($existCityIdList)
+            : [];
+    }
 }

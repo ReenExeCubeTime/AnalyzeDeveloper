@@ -51,3 +51,6 @@ AppBundle\Entity\SDeveloperProfile:
         description:
             type: string
             nullable: false
+        cityId:
+            type: integer
+            column: city_id
