@@ -46,28 +46,52 @@ class DeveloperSearcherTest extends AbstractServiceTest
 
         yield [
             [
-                DeveloperSearchParameterParser::SKILL => 'PHP,Redis,SQL,JavaScript,TDD'
-            ],
-            [1]
-        ];
-
-        yield [
-            [
-                DeveloperSearchParameterParser::SKILL => 'PHP'
+                DeveloperSearchParameterParser::SKILL => '',
+                DeveloperSearchParameterParser::CITY => '',
             ],
             [1, 2, 3]
         ];
 
         yield [
             [
-                DeveloperSearchParameterParser::SKILL => 'PHP,JavaScript'
+                DeveloperSearchParameterParser::SKILL => '1,2,3,4,5'
+            ],
+            [1]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => '1'
+            ],
+            [1, 2, 3]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => '1',
+                DeveloperSearchParameterParser::CITY => '1,2',
+            ],
+            [1, 2, 3]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => 'PHP',
+                DeveloperSearchParameterParser::CITY => '1',
+            ],
+            [3]
+        ];
+
+        yield [
+            [
+                DeveloperSearchParameterParser::SKILL => '1,4'
             ],
             [1, 2]
         ];
 
         yield [
             [
-                DeveloperSearchParameterParser::SKILL => 'PHP,SQL'
+                DeveloperSearchParameterParser::SKILL => '1,3'
             ],
             [1, 3]
         ];
@@ -81,13 +105,13 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 DeveloperSearchParameterParser::SKILL_NAME => [
                     'param' => DeveloperSearchParameterParser::SKILL,
                     'name' => DeveloperSearchParameterParser::SKILL_NAME,
-                    'list' => $this->getSkillList(),
+                    'list' => $this->combine($this->getSkillList()),
                 ],
 
                 DeveloperSearchParameterParser::CITY_NAME => [
                     'param' => DeveloperSearchParameterParser::CITY,
                     'name' => DeveloperSearchParameterParser::CITY_NAME,
-                    'list' => $this->getCityList(),
+                    'list' => $this->combine($this->getCityList()),
                 ]
             ]
         );
@@ -108,9 +132,10 @@ class DeveloperSearcherTest extends AbstractServiceTest
         $this->container->get('rqs.database.tester')->clear();
 
         $allSkills = $this->getSkillList();
-
         $this->container->get('rqs.skill')->create(...$allSkills);
-        $this->container->get('rqs.city')->create(...$this->getCityList());
+
+        $allCities = $this->getCityList();
+        $this->container->get('rqs.city')->create(...$allCities);
 
         $developerProfileDataList = [
             [
@@ -118,6 +143,7 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 5000,
                 'All',
                 $allSkills,
+                2,
             ],
 
             [
@@ -125,6 +151,7 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 2500,
                 'Some',
                 ['PHP', 'JavaScript'],
+                2,
             ],
 
             [
@@ -132,16 +159,17 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 1000,
                 'Some',
                 ['PHP', 'SQL'],
+                1,
             ],
         ];
 
-        foreach ($developerProfileDataList as list($title, $salary, $description, $skills)) {
+        foreach ($developerProfileDataList as list($title, $salary, $description, $skills, $cityId)) {
             $this->container->get('rqs.developer.profile')->create(
                 $this->getTestUser(),
                 $title,
                 $salary,
                 $description,
-                $this->getCity(),
+                $this->getCity($cityId),
                 $skills
             );
         }
@@ -156,24 +184,6 @@ class DeveloperSearcherTest extends AbstractServiceTest
         return $this->getService()->search(new ParameterBag($parameters));
     }
 
-    private function getSkillList()
-    {
-        return [
-            'PHP',
-            'Redis',
-            'SQL',
-            'JavaScript',
-            'TDD',
-        ];
-    }
-
-    private function getCityList()
-    {
-        return [
-            'Київ'
-        ];
-    }
-
     /**
      * @param \AppBundle\Entity\SDeveloperProfile[]|array $developerProfileCollection
      * @return array
@@ -185,5 +195,19 @@ class DeveloperSearcherTest extends AbstractServiceTest
             $developerProfileIdList[] = $developerProfile->getId();
         }
         return $developerProfileIdList;
+    }
+
+    private function combine(array $names)
+    {
+        $id = 1;
+        $result = [];
+        foreach ($names as $name) {
+            $result[] = [
+                'id' => $id++,
+                'name' => $name,
+            ];
+        }
+
+        return $result;
     }
 }

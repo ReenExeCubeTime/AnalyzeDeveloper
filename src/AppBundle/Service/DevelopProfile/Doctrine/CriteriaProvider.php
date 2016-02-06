@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service\DevelopProfile\Doctrine;
 
+use AppBundle\Repository\CriteriaListRepositoryInterface;
 use AppBundle\Service\DevelopProfile\CriteriaProviderInterface;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
@@ -21,9 +22,10 @@ class CriteriaProvider implements CriteriaProviderInterface
             ->getRepository('AppBundle:SDeveloperProfileToSkill')
             ->getAllSkillIdList();
 
-        return $existSkillIdList
-            ? $this->doctrine->getRepository('AppBundle:SSkill')->getNameList($existSkillIdList)
-            : [];
+        return $this->getCriteriaList(
+            $existSkillIdList,
+            $this->doctrine->getRepository('AppBundle:SSkill')
+        );
     }
 
     public function getCityList()
@@ -33,8 +35,14 @@ class CriteriaProvider implements CriteriaProviderInterface
             ->getRepository('AppBundle:SDeveloperProfile')
             ->getAllCityIdList();
 
-        return $existCityIdList
-            ? $this->doctrine->getRepository('AppBundle:SCity')->getNameList($existCityIdList)
-            : [];
+        return $this->getCriteriaList(
+            $existCityIdList,
+            $this->doctrine->getRepository('AppBundle:SCity')
+        );
+    }
+
+    private function getCriteriaList(array $idList, CriteriaListRepositoryInterface $repository)
+    {
+        return $idList ? $repository->getCriteriaList($idList) : [];
     }
 }

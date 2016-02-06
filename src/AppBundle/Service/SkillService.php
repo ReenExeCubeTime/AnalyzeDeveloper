@@ -3,9 +3,10 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\SSkill;
+use AppBundle\Common\ExistIdListInterface;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
-class SkillService
+class SkillService implements ExistIdListInterface
 {
     private $doctrine;
 
@@ -32,13 +33,17 @@ class SkillService
         return $this->doctrine->getRepository('AppBundle:SSkill')->findAllLike($value);
     }
 
-    public function getIdList(array $names)
-    {
-        return $this->doctrine->getRepository('AppBundle:SSkill')->getIdList($names);
-    }
-
     public function exists($name)
     {
         return $this->doctrine->getRepository('AppBundle:SSkill')->exists($name);
+    }
+
+    /**
+     * @param array $idList
+     * @return array
+     */
+    public function existIdList(array $idList)
+    {
+        return $this->doctrine->getRepository('AppBundle:SSkill')->existIdList($idList);
     }
 }

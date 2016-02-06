@@ -3,9 +3,10 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\SCity;
+use AppBundle\Common\ExistIdListInterface;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
-class CityService
+class CityService implements ExistIdListInterface
 {
     private $doctrine;
 
@@ -34,5 +35,14 @@ class CityService
     public function find($id)
     {
         return $this->doctrine->getRepository('AppBundle:SCity')->find($id);
+    }
+
+    /**
+     * @param array $idList
+     * @return array
+     */
+    public function existIdList(array $idList)
+    {
+        return $this->doctrine->getRepository('AppBundle:SCity')->existIdList($idList);
     }
 }
