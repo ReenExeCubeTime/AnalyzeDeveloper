@@ -11,7 +11,7 @@ class DeveloperSearcherService implements DeveloperSearcherServiceInterface
 
     private $parser;
 
-    public function __construct(SearchServiceInterface $search, DeveloperSearchParameterParser $parser)
+    public function __construct(SearchServiceInterface $search, ParameterParserInterface $parser)
     {
         $this->search = $search;
         $this->parser = $parser;

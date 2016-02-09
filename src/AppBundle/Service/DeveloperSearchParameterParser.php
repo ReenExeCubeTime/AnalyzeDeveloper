@@ -71,7 +71,7 @@ class DeveloperSearchParameterParser implements ParameterParserInterface
         return $emptySkillBitSet;
     }
 
-    public function getCityIdList($cities)
+    private function getCityIdList($cities)
     {
         if (empty($cities)) {
             return [];
