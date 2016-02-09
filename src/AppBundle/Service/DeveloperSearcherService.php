@@ -29,4 +29,13 @@ class DeveloperSearcherService implements DeveloperSearcherServiceInterface
             ->getRepository('AppBundle:SDeveloperProfile')
             ->search($this->parser->parse($parameters));
     }
+
+    public function count(ParameterBag $parameters)
+    {
+        return $this
+            ->doctrine
+            ->getManager()
+            ->getRepository('AppBundle:SDeveloperProfile')
+            ->count($this->parser->parse($parameters));
+    }
 }

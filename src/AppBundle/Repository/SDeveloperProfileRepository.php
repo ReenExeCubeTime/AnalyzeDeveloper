@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\SDeveloperProfile;
 use AppBundle\Searcher\DevelopProfileParameter;
 use Doctrine\ORM\QueryBuilder;
 
@@ -13,6 +14,10 @@ use Doctrine\ORM\QueryBuilder;
  */
 class SDeveloperProfileRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param DevelopProfileParameter $developProfileParameter
+     * @return SDeveloperProfile[]|array
+     */
     public function search(DevelopProfileParameter $developProfileParameter)
     {
         $queryBuilder = $this->createQueryBuilder('dp');
@@ -22,6 +27,23 @@ class SDeveloperProfileRepository extends \Doctrine\ORM\EntityRepository
         return $queryBuilder
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @param DevelopProfileParameter $developProfileParameter
+     * @return int
+     */
+    public function count(DevelopProfileParameter $developProfileParameter)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('dp')
+            ->select('COUNT(dp)');
+
+        $this->useSearchParameter($queryBuilder, $developProfileParameter);
+
+        return (int)$queryBuilder
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
     /**

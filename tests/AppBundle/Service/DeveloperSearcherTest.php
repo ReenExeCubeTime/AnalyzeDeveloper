@@ -22,11 +22,20 @@ class DeveloperSearcherTest extends AbstractServiceTest
      */
     public function test(array $parameters, array $expectDeveloperProfileIdList)
     {
-        $developerProfileCollection = $this->search($parameters);
+        $parameterBag = new ParameterBag($parameters);
+
+        $developerProfileCollection = $this->getService()->search($parameterBag);
 
         $this->assertSame(
             $this->getDeveloperProfileIdList($developerProfileCollection),
             $expectDeveloperProfileIdList
+        );
+
+        $count = $this->getService()->count($parameterBag);
+
+        $this->assertSame(
+            $count,
+            count($expectDeveloperProfileIdList)
         );
     }
 
@@ -173,15 +182,6 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 $skills
             );
         }
-    }
-
-    /**
-     * @param array $parameters
-     * @return \AppBundle\Entity\SDeveloperProfile[]|array
-     */
-    private function search(array $parameters)
-    {
-        return $this->getService()->search(new ParameterBag($parameters));
     }
 
     /**
