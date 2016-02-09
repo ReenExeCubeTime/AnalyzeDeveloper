@@ -35,10 +35,19 @@ services:
         arguments:
             - '@rqs.developer.profile.parameter.doctrine.criteria.provider'
 
+    rqs.developer.searcher.factory:
+        class: AppBundle\Service\DeveloperSearcherFactory
+        arguments:
+            - '@doctrine'
+
+    rqs.developer.concrete.searcher:
+        class: AppBundle\Service\DevelopProfile\SearchServiceInterface
+        factory: ['@rqs.developer.searcher.factory', createSearcher]
+
     rqs.developer.searcher:
         class: AppBundle\Service\DeveloperSearcherService
         arguments:
-            - '@doctrine'
+            - '@rqs.developer.concrete.searcher'
             - '@rqs.developer.profile.parameter.parser'
 
     rqs.user:

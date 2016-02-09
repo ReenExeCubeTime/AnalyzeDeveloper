@@ -2,18 +2,18 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Service\DevelopProfile\SearchServiceInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
-use Doctrine\Bundle\DoctrineBundle\Registry;
 
 class DeveloperSearcherService implements DeveloperSearcherServiceInterface
 {
-    private $doctrine;
+    private $search;
 
     private $parser;
 
-    public function __construct(Registry $doctrine, DeveloperSearchParameterParser $parser)
+    public function __construct(SearchServiceInterface $search, DeveloperSearchParameterParser $parser)
     {
-        $this->doctrine = $doctrine;
+        $this->search = $search;
         $this->parser = $parser;
     }
 
@@ -23,19 +23,11 @@ class DeveloperSearcherService implements DeveloperSearcherServiceInterface
      */
     public function search(ParameterBag $parameters)
     {
-        return $this
-            ->doctrine
-            ->getManager()
-            ->getRepository('AppBundle:SDeveloperProfile')
-            ->search($this->parser->parse($parameters), 0, 1024);
+        return $this->search->search($this->parser->parse($parameters), 0, 1024);
     }
 
     public function count(ParameterBag $parameters)
     {
-        return $this
-            ->doctrine
-            ->getManager()
-            ->getRepository('AppBundle:SDeveloperProfile')
-            ->count($this->parser->parse($parameters));
+        return $this->search->count($this->parser->parse($parameters));
     }
 }
