@@ -44,7 +44,7 @@ abstract class AbstractServiceTest extends KernelTestCase
     protected function getSkillList()
     {
         return [
-            'PHP',
+            1 => 'PHP',
             'Redis',
             'SQL',
             'JavaScript',
@@ -55,7 +55,7 @@ abstract class AbstractServiceTest extends KernelTestCase
     protected function getCityList()
     {
         return [
-            'Київ',
+            1 => 'Київ',
             'Львів',
         ];
     }

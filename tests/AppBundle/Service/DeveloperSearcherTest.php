@@ -199,11 +199,10 @@ class DeveloperSearcherTest extends AbstractServiceTest
 
     private function combine(array $names)
     {
-        $id = 1;
         $result = [];
-        foreach ($names as $name) {
+        foreach ($names as $id => $name) {
             $result[] = [
-                'id' => $id++,
+                'id' => $id,
                 'name' => $name,
             ];
         }
