@@ -27,6 +27,15 @@ class DeveloperSearcherService implements DeveloperSearcherServiceInterface
             ->doctrine
             ->getManager()
             ->getRepository('AppBundle:SDeveloperProfile')
-            ->search($this->parser->parse($parameters));
+            ->search($this->parser->parse($parameters), 0, 1024);
+    }
+
+    public function count(ParameterBag $parameters)
+    {
+        return $this
+            ->doctrine
+            ->getManager()
+            ->getRepository('AppBundle:SDeveloperProfile')
+            ->count($this->parser->parse($parameters));
     }
 }
