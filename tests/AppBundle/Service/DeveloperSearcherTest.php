@@ -22,7 +22,7 @@ class DeveloperSearcherTest extends AbstractServiceTest
      * @param $offset
      * @param $limit
      */
-    public function test(array $parameters, array $expectDeveloperProfileIdList, $offset = 0, $limit = 1024)
+    public function test(array $parameters, array $expectDeveloperProfileIdList, $offset = null, $limit = null)
     {
         $parameterBag = new ParameterBag($parameters);
 
@@ -35,10 +35,12 @@ class DeveloperSearcherTest extends AbstractServiceTest
 
         $count = $this->getService()->count($parameterBag);
 
-        $this->assertSame(
-            $count,
-            count($expectDeveloperProfileIdList)
-        );
+        if (empty($offset) && empty($limit)) {
+            $this->assertSame(
+                $count,
+                count($expectDeveloperProfileIdList)
+            );
+        }
     }
 
     public function dataProvider()
@@ -52,6 +54,13 @@ class DeveloperSearcherTest extends AbstractServiceTest
             [],
             [1, 2],
             0,
+            2
+        ];
+
+        yield [
+            [],
+            [2, 3],
+            1,
             2
         ];
 
