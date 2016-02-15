@@ -19,12 +19,14 @@ class DeveloperSearcherTest extends AbstractServiceTest
      * @dataProvider dataProvider
      * @param array $parameters
      * @param array $expectDeveloperProfileIdList
+     * @param $offset
+     * @param $limit
      */
-    public function test(array $parameters, array $expectDeveloperProfileIdList)
+    public function test(array $parameters, array $expectDeveloperProfileIdList, $offset = 0, $limit = 1024)
     {
         $parameterBag = new ParameterBag($parameters);
 
-        $developerProfileCollection = $this->getService()->search($parameterBag);
+        $developerProfileCollection = $this->getService()->search($parameterBag, $offset, $limit);
 
         $this->assertSame(
             $this->getDeveloperProfileIdList($developerProfileCollection),

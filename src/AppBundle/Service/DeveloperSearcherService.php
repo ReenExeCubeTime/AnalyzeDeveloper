@@ -19,11 +19,13 @@ class DeveloperSearcherService implements DeveloperSearcherServiceInterface
 
     /**
      * @param ParameterBag $parameters
+     * @param $offset
+     * @param $limit
      * @return \AppBundle\Entity\SDeveloperProfile[]|array
      */
-    public function search(ParameterBag $parameters)
+    public function search(ParameterBag $parameters, $offset, $limit)
     {
-        return $this->search->search($this->parser->parse($parameters), 0, 1024);
+        return $this->search->search($this->parser->parse($parameters), $offset, $limit);
     }
 
     public function count(ParameterBag $parameters)
