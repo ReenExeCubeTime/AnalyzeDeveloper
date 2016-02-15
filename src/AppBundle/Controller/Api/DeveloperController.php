@@ -10,7 +10,7 @@ class DeveloperController extends Controller
 {
     public function listAction(Request $request)
     {
-        $developerProfileCollection = $this->get('rqs.developer.searcher')->search($request->query);
+        $developerProfileCollection = $this->get('rqs.developer.searcher')->search($request->query, 0, 1024);
 
         return new JsonResponse($developerProfileCollection);
     }
