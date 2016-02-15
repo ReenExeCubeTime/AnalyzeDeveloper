@@ -49,6 +49,13 @@ class DeveloperSearcherTest extends AbstractServiceTest
         ];
 
         yield [
+            [],
+            [1, 2],
+            0,
+            2
+        ];
+
+        yield [
             [
                 DeveloperSearchParameterParser::SKILL => ''
             ],
