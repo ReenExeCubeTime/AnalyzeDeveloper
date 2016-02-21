@@ -2,8 +2,6 @@
 
 namespace Tests\AppBundle\Service;
 
-use AppBundle\Service\DeveloperSearchParameterParser;
-
 class DeveloperSearchParameterServiceTest extends AbstractServiceTest
 {
     public function testEmpty()

@@ -152,6 +152,47 @@ class DeveloperSearcherTest extends AbstractServiceTest
         );
     }
 
+    /**
+     * @dataProvider presentationDataProvider
+     * @param array $parameters
+     * @param array $expectDeveloperProfileIdList
+     * @param array $expectPager
+     */
+    public function testPresentation(array $parameters, array $expectDeveloperProfileIdList, array $expectPager)
+    {
+        $service = $this->getPresentationService();
+
+        $presentation = $service->getPresentation(new ParameterBag($parameters));
+
+        $this->assertSame(
+            $this->getDeveloperProfileIdList($presentation->getResults()),
+            $expectDeveloperProfileIdList
+        );
+
+        $pager = $presentation->getPager();
+
+        $this->assertSame($expectPager, [
+            'getCurrentPage' => $pager->getCurrentPage(),
+            'getCount' => $pager->getCount(),
+            'getPerPage' => $pager->getPerPage(),
+            'getPageCount' => $pager->getPageCount(),
+        ]);
+    }
+
+    public function presentationDataProvider()
+    {
+        yield [
+            [],
+            [1, 2, 3],
+            [
+                'getCurrentPage' => 1,
+                'getCount' => 3,
+                'getPerPage' => 20,
+                'getPageCount' => 1 ,
+            ]
+        ];
+    }
+
     private function getService()
     {
         return $this->container->get('rqs.developer.searcher');
@@ -160,6 +201,11 @@ class DeveloperSearcherTest extends AbstractServiceTest
     private function getCriteriaService()
     {
         return $this->container->get('rqs.developer.profile.parameter');
+    }
+
+    private function getPresentationService()
+    {
+        return $this->container->get('rqs.developer.search.page.presentation');
     }
 
     private function createDeveloperList()

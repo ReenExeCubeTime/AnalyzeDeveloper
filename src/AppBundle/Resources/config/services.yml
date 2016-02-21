@@ -55,6 +55,21 @@ services:
         arguments:
             - '@doctrine'
 
+    rqs.pagination.core:
+        class: ReenExeCubeTime\LightPaginator\Core
+
+    rqs.pager.factory:
+        class: ReenExeCubeTime\LightPaginator\Factory
+        arguments:
+            - '@rqs.pagination.core'
+
+    rqs.developer.search.page.presentation:
+        class: AppBundle\Service\DeveloperSearchPagePresentationService
+        arguments:
+            - '@rqs.pager.factory'
+            - '@rqs.developer.concrete.searcher'
+            - '@rqs.developer.profile.parameter.parser'
+
     rqs.database.tester:
         class: AppBundle\Service\DatabaseTesterService
         arguments:
