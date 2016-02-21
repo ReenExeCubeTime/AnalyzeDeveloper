@@ -19,10 +19,11 @@ class DeveloperSearcherTest extends AbstractServiceTest
      * @dataProvider dataProvider
      * @param array $parameters
      * @param array $expectDeveloperProfileIdList
+     * @param $count
      * @param $offset
      * @param $limit
      */
-    public function test(array $parameters, array $expectDeveloperProfileIdList, $offset = null, $limit = null)
+    public function test(array $parameters, array $expectDeveloperProfileIdList, $count, $offset = null, $limit = null)
     {
         $parameterBag = new ParameterBag($parameters);
 
@@ -33,26 +34,24 @@ class DeveloperSearcherTest extends AbstractServiceTest
             $expectDeveloperProfileIdList
         );
 
-        $count = $this->getService()->count($parameterBag);
-
-        if (empty($offset) && empty($limit)) {
-            $this->assertSame(
-                $count,
-                count($expectDeveloperProfileIdList)
-            );
-        }
+        $this->assertSame(
+            $this->getService()->count($parameterBag),
+            $count
+        );
     }
 
     public function dataProvider()
     {
         yield [
             [],
-            [1, 2, 3]
+            [1, 2, 3],
+            3
         ];
 
         yield [
             [],
             [1, 2],
+            3,
             0,
             2
         ];
@@ -60,6 +59,7 @@ class DeveloperSearcherTest extends AbstractServiceTest
         yield [
             [],
             [2, 3],
+            3,
             1,
             2
         ];
@@ -68,7 +68,8 @@ class DeveloperSearcherTest extends AbstractServiceTest
             [
                 DeveloperSearchParameterParser::SKILL => ''
             ],
-            [1, 2, 3]
+            [1, 2, 3],
+            3
         ];
 
         yield [
@@ -76,21 +77,24 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 DeveloperSearchParameterParser::SKILL => '',
                 DeveloperSearchParameterParser::CITY => '',
             ],
-            [1, 2, 3]
+            [1, 2, 3],
+            3
         ];
 
         yield [
             [
                 DeveloperSearchParameterParser::SKILL => '1,2,3,4,5'
             ],
-            [1]
+            [1],
+            1
         ];
 
         yield [
             [
                 DeveloperSearchParameterParser::SKILL => '1'
             ],
-            [1, 2, 3]
+            [1, 2, 3],
+            3
         ];
 
         yield [
@@ -98,7 +102,8 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 DeveloperSearchParameterParser::SKILL => '1',
                 DeveloperSearchParameterParser::CITY => '1,2',
             ],
-            [1, 2, 3]
+            [1, 2, 3],
+            3
         ];
 
         yield [
@@ -106,21 +111,24 @@ class DeveloperSearcherTest extends AbstractServiceTest
                 DeveloperSearchParameterParser::SKILL => 'PHP',
                 DeveloperSearchParameterParser::CITY => '1',
             ],
-            [3]
+            [3],
+            1
         ];
 
         yield [
             [
                 DeveloperSearchParameterParser::SKILL => '1,4'
             ],
-            [1, 2]
+            [1, 2],
+            2
         ];
 
         yield [
             [
                 DeveloperSearchParameterParser::SKILL => '1,3'
             ],
-            [1, 3]
+            [1, 3],
+            2
         ];
     }
 
