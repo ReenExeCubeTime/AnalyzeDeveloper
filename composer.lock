@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f881b8a6832320eca01b96d81e3f512a",
-    "content-hash": "ef70ac9c1e444541892363b425d756cb",
+    "hash": "1ff78ea6e840aaa27087c71e55bff4de",
+    "content-hash": "b802134655e65af84ce31e1a972bd60b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1160,6 +1160,38 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "reenexe-cubetime/light-paginator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ReenExeCubeTime/LightPaginator.git",
+                "reference": "5506b16a6b6b93c8a204358986ca11a4fd23cf21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ReenExeCubeTime/LightPaginator/zipball/5506b16a6b6b93c8a204358986ca11a4fd23cf21",
+                "reference": "5506b16a6b6b93c8a204358986ca11a4fd23cf21",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ReenExeCubeTime\\LightPaginator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2016-02-21 17:33:22"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -3254,8 +3286,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "reenexe-cubetime/light-paginator": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
